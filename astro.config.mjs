@@ -14,6 +14,12 @@ export default defineConfig({
         applyBaseStyles: false,
       },
     }),
+    partytown({
+      // Adds dataLayer.push as a forwarding-event.
+      config: {
+        forward: ["dataLayer.push"]
+      }
+    }),
     react(),
     sitemap(),
   ],
