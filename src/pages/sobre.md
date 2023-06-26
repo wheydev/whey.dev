@@ -5,6 +5,8 @@ title: "Sobre"
 
 WheyDev é um site criado com o objetivo de ajudar pessoas que trabalham com programação, ou entusiastas, a ficarem mais fortes, construindo uma base de tecnologia mais sólida.
 
+<a href="https://wheydev.substack.com/" target="_blank" rel="noopener noreferrer">Assine nossa Newsletter gratuita!</a>
+
 ## Autor
 
 <img src="../../public/assets/img/sobre/eder-christian.jpg" alt="Eder Christian">
