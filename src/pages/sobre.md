@@ -9,7 +9,7 @@ WheyDev é um site criado com o objetivo de ajudar pessoas que trabalham com pro
 
 ## Autor
 
-<img src="../../public/assets/eder-christian.jpg" alt="Eder Christian">
+<img src="/assets/eder-christian.jpg" alt="Eder Christian">
 
 <a href="htts://ederchristian.com" target="_blank" rel="noopener noreferrer">Eder Christian</a> é um profissional de tecnologia com formação em Técnico em Informática pela ETEC Cachoeira Paulista/SP, graduado em Gestão da Tecnologia da Informação pela FATEC Guaratinguetá/SP e pós-graduado em Projetos e Desenvolvimento de Aplicações Web pela UNIFATEA de Lorena/SP.
 
