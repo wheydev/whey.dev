@@ -5,7 +5,7 @@ import Hr from "./Hr.astro";
 import logoSVG from "/assets/logo.svg";
 
 export interface Props {
-  activeNav?: "posts" | "tags" | "sobre" | "pesquisar";
+  activeNav?: "posts" | "tags" | "about" | "search";
 }
 
 const { activeNav } = Astro.props;
@@ -36,8 +36,8 @@ const { activeNav } = Astro.props;
         </button>
         <ul id="menu-items" class="display-none sm:flex">
           <li>
-            <a href="/sobre" class={activeNav === "sobre" ? "active" : ""}>
-              Sobre
+            <a href="/about" class={activeNav === "about" ? "active" : ""}>
+              About
             </a>
           </li>
           <li>

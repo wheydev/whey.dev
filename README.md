@@ -1,6 +1,6 @@
 # WheyDev
 
-WheyDev é um site criado com o objetivo de ajudar pessoas que trabalham com programação, ou entusiastas, a ficarem mais fortes, construindo uma base de tecnologia mais sólida.
+WheyDev is a website created to help people working in programming, or enthusiasts, get stronger by building a more solid tech foundation.
 
 ## Stack
 
@@ -14,33 +14,33 @@ WheyDev é um site criado com o objetivo de ajudar pessoas que trabalham com pro
 **Code Formatting** - [Prettier](https://prettier.io/)  
 **Deploy** - [Vercel](https://vercel.com/)  
 
-## Rodando localmente
+## Running Locally
 
-Pela primeira vez, rode:
+For the first time, run:
 
 ```bash
 yarn
 ```
 
-ou
+or:
 
 ```bash
 npm install
 ```
 
-Depois:
+Then:
 
 ```bash
 yarn dev
 ```
 
-ou
+or:
 
 ```bash
 npm run dev
 ```
 
-## Licença
+## License
 
 MIT License, Copyright © 2022
 

@@ -22,26 +22,16 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   <Header />
   <main id="main-content">
     <section id="hero">
-      <h1>Construa a base de programação para te deixar mais forte</h1>
+      <h1>Strengthen Your <br /> Coding Foundation</h1>
 
-      <p>WheyDev é um site criado com o objetivo de ajudar pessoas que trabalham com programação, ou entusiastas, a ficarem mais fortes, construindo uma base de tecnologia mais sólida.</p>
-      <p>Alguns dos valores são: disciplina, força, resiliência, determinação, comunidade, conhecimento e curiosidade.</p>
-
-      {
-        // only display if at least one social link is enabled
-        socialCount > 0 && (
-          <div class="social-wrapper">
-            <div class="social-links">Redes sociais:</div>
-            <Socials />
-          </div>
-        )
-      }
+      <p>WheyDev is a website created to help people working in programming, or enthusiasts, get stronger by building a more solid tech foundation.</p>
+      <p>Some of our core values include: strength, resilience, determination, discipline, community, knowledge, and curiosity.</p>
     </section>
 
     <Hr />
 
     <section id="featured">
-      <h2 class="mb-6">Novos posts em breve.</h2>
+      <h2 class="mb-6">New posts coming soon.</h2>
     </section>
   </main>
 
