@@ -23,11 +23,11 @@ The WheyDev project is open to future partnerships and community building aimed 
 
 To help people working in technology (or enthusiasts) become strong and resilient in the face of challenges in a constantly changing world.
 
-## Visão
+## Vision
 
 To build with people a foundation — not only technical, in programming, but also in values and life — so we can do our best work and create a positive change in our surroundings.
 
-## Valores
+## Values
 
 - Strength
 - Resilience
