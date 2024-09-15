@@ -5,7 +5,7 @@ title: "About"
 
 WheyDev is a website created to help people working in programming or enthusiasts get stronger by building a more solid tech foundation.
 
-## Author
+## Creator
 
 <img src="/assets/eder-christian.jpg" alt="Eder Christian">
 
