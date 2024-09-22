@@ -101,29 +101,17 @@
     @apply hidden;
   }
 
-  /* ===== scrollbar ===== */
-  html {
-    overflow-y: scroll;
+  /* ===== Code Blocks & Syntax Highlighting ===== */
+  pre:has(code) {
+    @apply border border-skin-line;
+  }
+  code,
+  blockquote {
+    word-wrap: break-word;
   }
 
-  /* width */
-  ::-webkit-scrollbar {
-    @apply w-3;
-  }
-
-  /* Track */
-  ::-webkit-scrollbar-track {
-    @apply bg-skin-fill;
-  }
-
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    @apply bg-skin-card;
-  }
-
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-skin-card-muted;
+  pre > code {
+    white-space: pre;
   }
 }
 
