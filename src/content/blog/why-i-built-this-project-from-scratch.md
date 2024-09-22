@@ -9,9 +9,7 @@ draft: false
 tags:
   - wheydev
   - learn-in-public
-description:
-  Some rules & recommendations for creating or adding new posts using AstroPaper
-  theme.
+description: Join me on my journey of building WheyDev from scratch, sharing my experiences, challenges, and growth as a developer. Let's get stronger together, both technically and personally!
 ---
 
 Given my background, I never imagined that in just five years, I’d be working at a startup, becoming a partner, attending over 70 tech events, working remotely for an American company, and even launching my own business.
