@@ -28,26 +28,38 @@
   html[data-theme="dark"] #sun-svg {
     display: block;
   }
+
   body {
-    @apply font-mono bg-skin-fill text-skin-base min-h-screen flex flex-col 
+    @apply font-sans bg-skin-fill text-skin-base min-h-screen flex flex-col 
     selection:bg-skin-accent selection:text-skin-inverted selection:bg-opacity-70;
+    line-height: 1.8;
   }
+
+  h1, h2 {
+    @apply font-oxanium;
+    line-height: 1.4;
+  }
+
   section,
   footer {
     @apply max-w-3xl mx-auto px-4;
   }
+
   a {
     @apply outline-offset-1 outline-skin-fill outline-2 
     focus-visible:outline-dashed focus-visible:no-underline;
   }
+
   svg {
     @apply w-6 h-6 inline-block fill-skin-base group-hover:fill-skin-accent;
   }
+
   svg.icon-tabler {
     @apply w-6 h-6 scale-125 sm:scale-110 opacity-90 
     inline-block fill-transparent stroke-2 stroke-current 
     group-hover:fill-transparent;
   }
+
   .prose {
     @apply prose-a:underline-offset-8 prose-ul:overflow-x-clip 
     prose-a:!decoration-dashed hover:prose-a:text-skin-accent 
@@ -57,7 +69,6 @@
     prose-td:border prose-td:border-skin-line
     prose-h3:italic
 
-    
     prose-p:!text-skin-base prose-headings:!text-skin-base 
     prose-ol:!text-skin-base prose-ul:!text-skin-base prose-blockquote:opacity-80 
     prose-figcaption:!text-skin-base prose-figcaption:opacity-70

@@ -4,22 +4,14 @@ import react from "@astrojs/react";
 import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
 import sitemap from "@astrojs/sitemap";
-import partytown from "@astrojs/partytown";
+import { SITE } from "./src/config";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://whey.dev/",
+  site: SITE.website,
   integrations: [
     tailwind({
-      config: {
-        applyBaseStyles: false,
-      },
-    }),
-    partytown({
-      // Adds dataLayer.push as a forwarding-event.
-      config: {
-        forward: ["dataLayer.push"]
-      }
+      applyBaseStyles: false,
     }),
     react(),
     sitemap(),
@@ -35,9 +27,17 @@ export default defineConfig({
       ],
     ],
     shikiConfig: {
-      theme: "one-dark-pro",
+      themes: { light: "min-light", dark: "night-owl" },
       wrap: true,
     },
-    extendDefaultPlugins: true,
+  },
+  vite: {
+    optimizeDeps: {
+      exclude: ["@resvg/resvg-js"],
+    },
+  },
+  scopedStyleStrategy: "where",
+  experimental: {
+    contentLayer: true,
   },
 });
