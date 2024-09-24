@@ -7,7 +7,7 @@ WheyDev is a website created to help people working in programming or enthusiast
 
 ## Creator
 
-<img src="/assets/eder-christian.jpg" alt="Eder Christian">
+<img src="/assets/eder-christian-looking.jpg" alt="Eder Christian" style="width: 400px; max-width: 100%; text-align: left; margin-right: auto;">
 
 <a href="htts://ederchristian.com" target="_blank" rel="noopener noreferrer">Eder Christian</a> is a technology professional with a Technical Computation course from ETEC Cachoeira Paulista - SP (Brazil), a degree in Information Technology Management from FATEC Guaratingueta - SP (Brazil), and a postgraduate degree in Web Applications Projects and Development from UNIFATEA in Lorena - SP (Brazil).
 
