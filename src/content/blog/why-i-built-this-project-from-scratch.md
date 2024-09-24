@@ -1,7 +1,7 @@
 ---
 author: Eder Christian
-pubDatetime: 2024-09-22T23:00:00Z
-modDatetime: 2024-09-22T22:30:00Z
+pubDatetime: 2024-09-22T23:04:00Z
+modDatetime: 2024-09-22T22:32:00Z
 title: Why I Built This Project from Scratch
 slug: why-i-built-this-project-from-scratch
 featured: true
