@@ -14,7 +14,7 @@ tags:
 description: Personal e direct Notes from Frontend Masters Course "Software Developer Success - Soft Skills & Testing"
 ---
 
-## Personal e direct Notes from Frontend Masters Course "Software Developer Success: Soft Skills & Testing"
+## Personal and direct Notes from Frontend Masters Course "Software Developer Success: Soft Skills & Testing"
 
 - Ask questions.
 - Pair programming or shadow experience coworkers / Ramp-up boddy.
