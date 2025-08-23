@@ -1,6 +1,8 @@
 # build output
 dist/
 .output/
+.next/
+out/
 
 # dependencies
 node_modules/
@@ -11,16 +13,14 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
 # environment variables
 .env
+.env.local
 .env.production
+.env.development
 
 # macOS-specific files
 .DS_Store
-
-# ignore .astro directory
-.astro
 
 # yarn
 .yarn/*
@@ -30,3 +30,10 @@ pnpm-debug.log*
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# misc
+.vercel
