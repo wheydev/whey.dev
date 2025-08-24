@@ -1,23 +1,7 @@
 import NextAuth from 'next-auth'
-import GoogleProvider from 'next-auth/providers/google'
-
-const googleClientId = process.env.GOOGLE_CLIENT_ID
-const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET
-
-if (!googleClientId) {
-  throw new Error('Missing required environment variable: GOOGLE_CLIENT_ID')
-}
-if (!googleClientSecret) {
-  throw new Error('Missing required environment variable: GOOGLE_CLIENT_SECRET')
-}
 
 const handler = NextAuth({
-  providers: [
-    GoogleProvider({
-      clientId: googleClientId,
-      clientSecret: googleClientSecret,
-    }),
-  ],
+  providers: [],
   pages: {
     signIn: '/auth/signin',
     error: '/auth/error',
