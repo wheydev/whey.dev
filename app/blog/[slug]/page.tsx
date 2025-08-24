@@ -6,9 +6,9 @@ import { notFound } from 'next/navigation'
 import BlogPost from './BlogPost'
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function generateStaticParams() {
@@ -20,7 +20,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
-  const post = await getPostBySlug(params.slug)
+  const resolvedParams = await params
+  const post = await getPostBySlug(resolvedParams.slug)
   
   if (!post) {
     return {
@@ -35,7 +36,8 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = await getPostBySlug(params.slug)
+  const resolvedParams = await params
+  const post = await getPostBySlug(resolvedParams.slug)
   
   if (!post) {
     notFound()

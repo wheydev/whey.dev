@@ -4,7 +4,7 @@ import { styled } from '@/stitches.config'
 import { MDXRemote } from 'next-mdx-remote'
 import { format } from 'date-fns'
 import Link from 'next/link'
-import type { Post } from '@/lib/mdx'
+import type { PostWithMDX } from '@/lib/mdx'
 
 const BackLink = styled(Link, {
   display: 'inline-flex',
@@ -14,11 +14,11 @@ const BackLink = styled(Link, {
   color: '$textSecondary',
   marginBottom: '$8',
   transition: '$default',
-  
+
   '&:hover': {
     color: '$textPrimary',
   },
-  
+
   '&::before': {
     content: '←',
     fontSize: '$base',
@@ -36,7 +36,7 @@ const PostTitle = styled('h1', {
   fontWeight: '$bold',
   marginBottom: '$4',
   lineHeight: '$tight',
-  
+
   '@md': {
     fontSize: '$5xl',
   },
@@ -61,41 +61,41 @@ const PostContent = styled('div', {
   '& > *': {
     marginBottom: '$6',
   },
-  
+
   '& h1, & h2, & h3, & h4, & h5, & h6': {
     fontWeight: '$semibold',
     lineHeight: '$tight',
     marginTop: '$8',
     marginBottom: '$4',
   },
-  
+
   '& h1': {
     fontSize: '$3xl',
   },
-  
+
   '& h2': {
     fontSize: '$2xl',
   },
-  
+
   '& h3': {
     fontSize: '$xl',
   },
-  
+
   '& p': {
     fontSize: '$base',
     lineHeight: '$relaxed',
     color: '$textSecondary',
   },
-  
+
   '& ul, & ol': {
     paddingLeft: '$6',
     color: '$textSecondary',
   },
-  
+
   '& li': {
     marginBottom: '$2',
   },
-  
+
   '& blockquote': {
     borderLeft: '4px solid $border',
     paddingLeft: '$4',
@@ -103,7 +103,7 @@ const PostContent = styled('div', {
     fontStyle: 'italic',
     color: '$textMuted',
   },
-  
+
   '& code': {
     fontFamily: '$mono',
     fontSize: '$sm',
@@ -111,7 +111,7 @@ const PostContent = styled('div', {
     padding: '$1 $2',
     borderRadius: '$sm',
   },
-  
+
   '& pre': {
     backgroundColor: '$gray2',
     padding: '$4',
@@ -124,7 +124,7 @@ const PostContent = styled('div', {
       padding: 0,
     },
   },
-  
+
   '& a': {
     color: '$accent',
     textDecoration: 'underline',
@@ -133,13 +133,13 @@ const PostContent = styled('div', {
       textDecoration: 'none',
     },
   },
-  
+
   '& img': {
     width: '100%',
     height: 'auto',
     borderRadius: '$md',
   },
-  
+
   '& hr': {
     border: 'none',
     borderTop: '1px solid $border',
@@ -169,29 +169,29 @@ const PostFooter = styled('footer', {
 })
 
 interface BlogPostProps {
-  post: Post & { content: any }
+  post: PostWithMDX
 }
 
 export default function BlogPost({ post }: BlogPostProps) {
   return (
     <>
       <BackLink href="/blog">Back to Blog</BackLink>
-      
+
       <PostHeader>
         <PostTitle>{post.title}</PostTitle>
-        
+
         <PostMeta>
           <span>{format(new Date(post.date), 'MMMM dd, yyyy')}</span>
           {post.author && <span>by {post.author}</span>}
         </PostMeta>
-        
+
         <PostExcerpt>{post.excerpt}</PostExcerpt>
       </PostHeader>
-      
+
       <PostContent>
         <MDXRemote {...post.content} />
       </PostContent>
-      
+
       {post.tags && post.tags.length > 0 && (
         <PostFooter>
           <h3 style={{ fontSize: '1.125rem', marginBottom: '0.75rem' }}>Tags</h3>

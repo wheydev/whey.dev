@@ -10,7 +10,7 @@ const PageHeader = styled('div', {
   paddingTop: '$6',
   paddingBottom: '$6',
   borderBottom: '1px solid $border',
-  
+
   '@md': {
     paddingTop: '$12',
     paddingBottom: '$12',
@@ -21,7 +21,7 @@ const PageTitle = styled('h1', {
   fontSize: '$2xl',
   fontWeight: '$bold',
   marginBottom: '$3',
-  
+
   '@md': {
     fontSize: '$5xl',
     marginBottom: '$4',
@@ -51,12 +51,12 @@ const TagFilter = styled('button', {
   color: '$textSecondary',
   cursor: 'pointer',
   transition: '$default',
-  
+
   '&:hover': {
     borderColor: '$accent',
     color: '$textPrimary',
   },
-  
+
   variants: {
     active: {
       true: {
@@ -76,7 +76,7 @@ const PostItem = styled('article', {
   paddingTop: '$8',
   paddingBottom: '$8',
   borderBottom: '1px solid $border',
-  
+
   '&:last-child': {
     borderBottom: 'none',
   },
@@ -86,10 +86,10 @@ const PostTitle = styled('h2', {
   fontSize: '$2xl',
   fontWeight: '$semibold',
   marginBottom: '$2',
-  
+
   '& a': {
     transition: '$default',
-    
+
     '&:hover': {
       color: '$textSecondary',
     },
@@ -139,17 +139,17 @@ const PageButton = styled('button', {
   cursor: 'pointer',
   transition: '$default',
   minWidth: '$10',
-  
+
   '&:hover:not(:disabled)': {
     borderColor: '$accent',
     color: '$textPrimary',
   },
-  
+
   '&:disabled': {
     opacity: 0.5,
     cursor: 'not-allowed',
   },
-  
+
   variants: {
     active: {
       true: {
