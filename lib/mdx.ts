@@ -1,8 +1,6 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { serialize } from 'next-mdx-remote/serialize'
-import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 const contentDirectory = path.join(process.cwd(), 'content')
 
@@ -17,7 +15,7 @@ export interface Post {
 }
 
 export interface PostWithMDX extends Omit<Post, 'content'> {
-  content: MDXRemoteSerializeResult
+  content: string
 }
 
 export async function getAllPosts(): Promise<Post[]> {
@@ -67,14 +65,12 @@ export async function getPostBySlug(slug: string): Promise<PostWithMDX | null> {
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data, content } = matter(fileContents)
 
-  const mdxSource = await serialize(content)
-
   return {
     slug,
     title: data.title || slug,
     date: data.pubDatetime || data.date || new Date().toISOString(),
     excerpt: data.description || data.excerpt || content.slice(0, 200) + '...',
-    content: mdxSource,
+    content: content,
     tags: data.tags || [],
     author: data.author || 'Eder Christian',
   }
