@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { getCssText } from '@/stitches.config'
+import StitchesProvider from '@/components/StitchesProvider'
 
 export const metadata: Metadata = {
   title: 'WheyDev - Independent Lab Building Minimal Products',
@@ -14,7 +14,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <style id="stitches" dangerouslySetInnerHTML={{ __html: getCssText() }} />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="alternate icon" href="/favicon.ico" />
         <meta property="og:image" content="/wheydev-og.png" />
@@ -35,7 +34,11 @@ export default function RootLayout({
           crossOrigin="anonymous"
         ></script>
       </head>
-      <body>{children}</body>
+      <body>
+        <StitchesProvider>
+          {children}
+        </StitchesProvider>
+      </body>
     </html>
   )
 }
