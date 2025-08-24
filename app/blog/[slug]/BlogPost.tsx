@@ -3,8 +3,13 @@
 import { styled } from '@/stitches.config'
 import { format } from 'date-fns'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import type { PostWithMDX } from '@/lib/mdx'
-import MDXContent from './MDXContent'
+
+const MDXContent = dynamic(() => import('./MDXContent'), {
+  ssr: false,
+  loading: () => <div>Loading content...</div>
+})
 
 const BackLink = styled(Link, {
   display: 'inline-flex',
