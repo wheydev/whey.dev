@@ -67,7 +67,7 @@ export function Footer({
           <Copyright>
             Copyright © {currentYear} | All rights reserved<br />
             Built independently<br />
-            Created by Eder Christian
+            Created by <a href="https://ederchristian.com" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Eder Christian</a>
           </Copyright>
           
           <FooterLinks>
