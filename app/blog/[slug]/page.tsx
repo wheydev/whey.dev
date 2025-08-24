@@ -1,7 +1,6 @@
 import { Layout } from '@/components/Layout'
 import { Container } from '@/components/Container'
 import { getAllPosts, getPostBySlug } from '@/lib/mdx'
-import { MDXRemote } from 'next-mdx-remote/rsc'
 import { notFound } from 'next/navigation'
 import BlogPost from './BlogPost'
 
@@ -46,9 +45,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <Layout>
       <Container size="md">
-        <BlogPost post={post}>
-          <MDXRemote source={post.content} />
-        </BlogPost>
+        <BlogPost post={post} />
       </Container>
     </Layout>
   )

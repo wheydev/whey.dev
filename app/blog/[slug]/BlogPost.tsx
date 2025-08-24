@@ -4,6 +4,7 @@ import { styled } from '@/stitches.config'
 import { format } from 'date-fns'
 import Link from 'next/link'
 import type { PostWithMDX } from '@/lib/mdx'
+import MDXContent from './MDXContent'
 
 const BackLink = styled(Link, {
   display: 'inline-flex',
@@ -169,10 +170,9 @@ const PostFooter = styled('footer', {
 
 interface BlogPostProps {
   post: PostWithMDX
-  children: React.ReactNode
 }
 
-export default function BlogPost({ post, children }: BlogPostProps) {
+export default function BlogPost({ post }: BlogPostProps) {
   return (
     <>
       <BackLink href="/blog">Back to Blog</BackLink>
@@ -189,7 +189,7 @@ export default function BlogPost({ post, children }: BlogPostProps) {
       </PostHeader>
 
       <PostContent>
-        {children}
+        <MDXContent content={post.content} />
       </PostContent>
 
       {post.tags && post.tags.length > 0 && (
