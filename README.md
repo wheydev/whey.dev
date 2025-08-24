@@ -16,27 +16,6 @@ npm run dev
 - **TypeScript** for type safety
 - **Stitches** for CSS-in-JS
 - **MDX** for content
-- **NextAuth** (Google OAuth)
-
-## Environment Variables
-
-```bash
-NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=your-secret
-GOOGLE_CLIENT_ID=your-google-client-id
-GOOGLE_CLIENT_SECRET=your-google-client-secret
-NEXT_PUBLIC_PROJECT_NAME=wheydev
-NEXT_PUBLIC_PROJECT_LOGO=/logo.svg
-NEXT_PUBLIC_GA_TRACKING_ID=G-YOUR-TRACKING-ID
-```
-
-## Multi-Project Support
-
-Set `NEXT_PUBLIC_PROJECT_NAME` to switch configurations:
-- `wheydev` - Blog + Labs
-- `rayte` - YouTube Analytics
-- `talk` - Language Practice  
-- `photo` - Image Tools
 
 ## Scripts
 
