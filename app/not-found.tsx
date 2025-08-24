@@ -101,7 +101,7 @@ export default function NotFound() {
           <NotFoundTitle>404</NotFoundTitle>
           <NotFoundSubtitle>Page Not Found</NotFoundSubtitle>
           <NotFoundDescription>
-            The page you're looking for doesn't exist. It might have been moved, deleted, or you entered the wrong URL.
+            The page you&apos;re looking for doesn&apos;t exist. It might have been moved, deleted, or you entered the wrong URL.
           </NotFoundDescription>
           <BackButton href="/">
             <span>← Back to Home</span>
