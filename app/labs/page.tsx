@@ -6,48 +6,84 @@ import { styled } from '@/stitches.config'
 import Link from 'next/link'
 
 const PageHeader = styled('div', {
-  paddingTop: '$12',
-  paddingBottom: '$12',
+  paddingTop: '$6',
+  paddingBottom: '$6',
   borderBottom: '1px solid $border',
+  
+  '@md': {
+    paddingTop: '$12',
+    paddingBottom: '$12',
+  },
 })
 
 const PageTitle = styled('h1', {
-  fontSize: '$5xl',
+  fontSize: '$2xl',
   fontWeight: '$bold',
-  marginBottom: '$4',
+  marginBottom: '$3',
+  color: '$textPrimary',
+  
+  '@md': {
+    fontSize: '$5xl',
+    marginBottom: '$4',
+  },
 })
 
 const PageDescription = styled('p', {
-  fontSize: '$lg',
+  fontSize: '$base',
   color: '$textSecondary',
   lineHeight: '$relaxed',
+  
+  '@md': {
+    fontSize: '$lg',
+  },
 })
 
 const ProjectsGrid = styled('div', {
   display: 'grid',
   gridTemplateColumns: '1fr',
-  gap: '$8',
-  paddingTop: '$12',
+  gap: '$6',
+  paddingTop: '$8',
   
   '@md': {
     gridTemplateColumns: 'repeat(2, 1fr)',
+    gap: '$8',
+    paddingTop: '$12',
   },
 })
 
-const ProjectCard = styled('a', {
+const ProjectCard = styled('div', {
   display: 'block',
-  padding: '$8',
+  padding: '$6',
   border: '1px solid $border',
   borderRadius: '$xl',
   transition: '$default',
-  cursor: 'pointer',
+  cursor: 'not-allowed',
+  position: 'relative',
+  overflow: 'hidden',
   
-  '&:hover': {
-    transform: 'translateY(-2px)',
-    boxShadow: '$lg',
-    borderColor: '$textSecondary',
+  '@md': {
+    padding: '$8',
+  },
+  
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'rgba(10, 10, 10, 0.7)',
+    backdropFilter: 'blur(8px)',
+    zIndex: 1,
+    transition: 'opacity 0.3s ease',
   },
 })
+
+const ProjectContent = styled('div', {
+  position: 'relative',
+  zIndex: 2,
+})
+
 
 const ProjectIcon = styled('div', {
   width: '48px',
@@ -62,16 +98,24 @@ const ProjectIcon = styled('div', {
 })
 
 const ProjectName = styled('h3', {
-  fontSize: '$2xl',
+  fontSize: '$xl',
   fontWeight: '$semibold',
   marginBottom: '$2',
+  
+  '@md': {
+    fontSize: '$2xl',
+  },
 })
 
 const ProjectDescription = styled('p', {
-  fontSize: '$base',
+  fontSize: '$sm',
   color: '$textSecondary',
   lineHeight: '$relaxed',
   marginBottom: '$4',
+  
+  '@md': {
+    fontSize: '$base',
+  },
 })
 
 const ProjectStatus = styled('span', {
@@ -111,13 +155,6 @@ const labs = [
     href: 'https://rayte.wheydev.com',
   },
   {
-    name: 'Talk',
-    description: 'Practice English conversations with AI. Improve your speaking skills through natural dialogue.',
-    status: 'development' as const,
-    icon: '💬',
-    href: 'https://talk.wheydev.com',
-  },
-  {
     name: 'Photo',
     description: 'Transform your photos with AI. Create stunning variations from a single image.',
     status: 'development' as const,
@@ -133,8 +170,7 @@ export default function LabsPage() {
         <PageHeader>
           <PageTitle>Labs</PageTitle>
           <PageDescription>
-            Experiments at the intersection of AI, software, and productivity. 
-            Some remain prototypes, others grow into standalone products.
+            Experiments at the intersection of AI, productivity, and software.
           </PageDescription>
         </PageHeader>
         
@@ -142,16 +178,15 @@ export default function LabsPage() {
           {labs.map((lab) => (
             <ProjectCard 
               key={lab.name}
-              href={lab.href}
-              target="_blank"
-              rel="noopener noreferrer"
             >
-              <ProjectIcon>{lab.icon}</ProjectIcon>
-              <ProjectName>{lab.name}</ProjectName>
-              <ProjectDescription>{lab.description}</ProjectDescription>
-              <ProjectStatus status={lab.status}>
-                {lab.status}
-              </ProjectStatus>
+              <ProjectContent>
+                <ProjectIcon>{lab.icon}</ProjectIcon>
+                <ProjectName>{lab.name}</ProjectName>
+                <ProjectDescription>{lab.description}</ProjectDescription>
+                <ProjectStatus status={lab.status}>
+                  {lab.status}
+                </ProjectStatus>
+              </ProjectContent>
             </ProjectCard>
           ))}
         </ProjectsGrid>
