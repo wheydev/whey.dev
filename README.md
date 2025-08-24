@@ -1,49 +1,38 @@
 # WheyDev
 
-WheyDev is a website created to help people working in programming, or enthusiasts, get stronger by building a more solid tech foundation.
+Modern Next.js template for multi-project development with TypeScript, Stitches, and MDX.
 
-## Stack
-
-**Framework** - [Astro](https://astro.build/)  
-**Type Checking** - [TypeScript](https://www.typescriptlang.org/)  
-**Component Framework** - [ReactJS](https://reactjs.org/)  
-**Estilos** - [TailwindCSS](https://tailwindcss.com/)  
-**UI/UX** - [Figma](https://figma.com)  
-**Fuzzy Search** - [FuseJS](https://fusejs.io/)  
-**Ícones** - [Boxicons](https://boxicons.com/) | [Tablers](https://tabler-icons.io/)  
-**Code Formatting** - [Prettier](https://prettier.io/)  
-**Deploy** - [Vercel](https://vercel.com/)  
-
-## Running Locally
-
-For the first time, run:
-
-```bash
-yarn
-```
-
-or:
+## Quick Start
 
 ```bash
 npm install
-```
-
-Then:
-
-```bash
-yarn dev
-```
-
-or:
-
-```bash
+cp .env.example .env.local
 npm run dev
 ```
 
-## License
+## Stack
 
-MIT License, Copyright © 2022
+- **Next.js 15** with App Router
+- **TypeScript** for type safety
+- **Stitches** for CSS-in-JS
+- **MDX** for content
 
-## Astro Template
+## Scripts
 
-[Astro Paper](https://github.com/satnaing/astro-paper)
+```bash
+npm run dev      # Development server
+npm run build    # Production build
+npm run start    # Production server
+npm run lint     # ESLint
+```
+
+## Deployment
+
+Deploy to Vercel with one command:
+```bash
+vercel
+```
+
+---
+
+Built by [WheyDev](https://whey.dev)
