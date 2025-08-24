@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { serialize } from 'next-mdx-remote/serialize'
+import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 const contentDirectory = path.join(process.cwd(), 'content')
 
@@ -15,15 +16,19 @@ export interface Post {
   author?: string
 }
 
+export interface PostWithMDX extends Omit<Post, 'content'> {
+  content: MDXRemoteSerializeResult
+}
+
 export async function getAllPosts(): Promise<Post[]> {
   const postsDirectory = path.join(contentDirectory, 'blog')
-  
+
   if (!fs.existsSync(postsDirectory)) {
     return []
   }
-  
+
   const fileNames = fs.readdirSync(postsDirectory)
-  
+
   const posts = await Promise.all(
     fileNames
       .filter((fileName) => fileName.endsWith('.mdx') || fileName.endsWith('.md'))
@@ -43,28 +48,27 @@ export async function getAllPosts(): Promise<Post[]> {
         }
       })
   )
-  
+
   return posts.sort((a, b) => (a.date > b.date ? -1 : 1))
 }
 
-export async function getPostBySlug(slug: string) {
+export async function getPostBySlug(slug: string): Promise<PostWithMDX | null> {
   const postsDirectory = path.join(contentDirectory, 'blog')
-  
-  // Try both .mdx and .md extensions
+
   let fullPath = path.join(postsDirectory, `${slug}.mdx`)
   if (!fs.existsSync(fullPath)) {
     fullPath = path.join(postsDirectory, `${slug}.md`)
   }
-  
+
   if (!fs.existsSync(fullPath)) {
     return null
   }
-  
+
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data, content } = matter(fileContents)
-  
+
   const mdxSource = await serialize(content)
-  
+
   return {
     slug,
     title: data.title || slug,
