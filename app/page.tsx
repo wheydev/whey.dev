@@ -62,10 +62,6 @@ const Grid = styled('div', {
   '@md': {
     gridTemplateColumns: 'repeat(2, 1fr)',
   },
-  
-  '@lg': {
-    gridTemplateColumns: 'repeat(3, 1fr)',
-  },
 })
 
 const Card = styled('div', {
@@ -98,7 +94,7 @@ export default function HomePage() {
         <Hero>
           <HeroTitle>Building Strong Tools for Modern Makers</HeroTitle>
           <HeroSubtitle>
-            WheyDev builds tools and experiments for developers and creators — helping you grow in skills, productivity, and creativity.
+            WheyDev builds tools and experiments for developers and creators—helping you grow in skills, productivity, and creativity.
           </HeroSubtitle>
           <CTAButton href="/labs">Explore Labs</CTAButton>
         </Hero>
@@ -107,24 +103,27 @@ export default function HomePage() {
           <SectionTitle>Our Values</SectionTitle>
           <Grid>
             <Card>
+              <CardTitle>Strength</CardTitle>
+              <CardDescription>
+                We build with resilience, determination, and discipline.
+              </CardDescription>
+            </Card>
+            <Card>
               <CardTitle>Simplicity</CardTitle>
               <CardDescription>
-                We believe in building tools that do one thing exceptionally well, 
-                without unnecessary complexity.
+                We design minimal tools that do one thing well.
               </CardDescription>
             </Card>
             <Card>
               <CardTitle>Experimentation</CardTitle>
               <CardDescription>
-                Every product starts as an experiment. We test ideas quickly, 
-                share progress openly, and iterate based on feedback.
+                We test ideas quickly and learn in public.
               </CardDescription>
             </Card>
             <Card>
-              <CardTitle>Impact</CardTitle>
+              <CardTitle>Curiosity</CardTitle>
               <CardDescription>
-                We focus on creating real value for people doing modern work, 
-                solving actual problems with practical solutions.
+                We stay open, connected, and eager to explore.
               </CardDescription>
             </Card>
           </Grid>
