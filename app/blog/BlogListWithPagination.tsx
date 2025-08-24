@@ -328,7 +328,7 @@ export default function BlogListWithPagination({ posts }: BlogListWithPagination
         </Pagination>
       )}
       
-      <PageInfo style={{ display: 'block', textAlign: 'center', marginTop: '$4' }}>
+      <PageInfo style={{ display: 'block', textAlign: 'center', marginTop: 16 }}>
         Showing {startIndex + 1}-{Math.min(endIndex, filteredPosts.length)} of {filteredPosts.length} posts
         {selectedTag && ` (filtered by "${selectedTag}")`}
       </PageInfo>
