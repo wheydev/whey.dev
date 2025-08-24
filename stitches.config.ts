@@ -159,59 +159,58 @@ export const {
     light: '(prefers-color-scheme: light)',
   },
   utils: {
-    p: (value: any) => ({
+    p: (value: string | number) => ({
       padding: value,
     }),
-    pt: (value: any) => ({
+    pt: (value: string | number) => ({
       paddingTop: value,
     }),
-    pr: (value: any) => ({
+    pr: (value: string | number) => ({
       paddingRight: value,
     }),
-    pb: (value: any) => ({
+    pb: (value: string | number) => ({
       paddingBottom: value,
     }),
-    pl: (value: any) => ({
+    pl: (value: string | number) => ({
       paddingLeft: value,
     }),
-    px: (value: any) => ({
+    px: (value: string | number) => ({
       paddingLeft: value,
       paddingRight: value,
     }),
-    py: (value: any) => ({
+    py: (value: string | number) => ({
       paddingTop: value,
       paddingBottom: value,
     }),
-    m: (value: any) => ({
+    m: (value: string | number) => ({
       margin: value,
     }),
-    mt: (value: any) => ({
+    mt: (value: string | number) => ({
       marginTop: value,
     }),
-    mr: (value: any) => ({
+    mr: (value: string | number) => ({
       marginRight: value,
     }),
-    mb: (value: any) => ({
+    mb: (value: string | number) => ({
       marginBottom: value,
     }),
-    ml: (value: any) => ({
+    ml: (value: string | number) => ({
       marginLeft: value,
     }),
-    mx: (value: any) => ({
+    mx: (value: string | number) => ({
       marginLeft: value,
       marginRight: value,
     }),
-    my: (value: any) => ({
+    my: (value: string | number) => ({
       marginTop: value,
       marginBottom: value,
     }),
-    size: (value: any) => ({
+    size: (value: string | number) => ({
       width: value,
       height: value,
     }),
   },
 })
-
 
 export const globalStyles = globalCss({
   '*': {
