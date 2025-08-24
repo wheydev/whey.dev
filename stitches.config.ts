@@ -26,9 +26,13 @@ export const {
       gray9: '#E0E0E0',
       gray10: '#EDEDED',
       
+      // Brand colors
+      green: '#1DD882',
+      purple: '#1E083D',
+      
       // Accent colors
-      accent: '#FFFFFF',
-      accentHover: '#E0E0E0',
+      accent: '#1DD882',
+      accentHover: '#19C274',
       
       // Semantic colors (dark mode)
       background: '#0A0A0A',
