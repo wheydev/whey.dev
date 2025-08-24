@@ -6,85 +6,146 @@ import { styled } from '@/stitches.config'
 import Link from 'next/link'
 
 const Hero = styled('section', {
-  paddingTop: '$20',
-  paddingBottom: '$20',
+  paddingTop: '$12',
+  paddingBottom: '$12',
+  
+  '@md': {
+    paddingTop: '$20',
+    paddingBottom: '$20',
+  },
 })
 
 const HeroTitle = styled('h1', {
-  fontSize: '$6xl',
+  fontSize: '$4xl',
   fontWeight: '$bold',
-  marginBottom: '$6',
+  marginBottom: '$4',
   letterSpacing: '$tight',
+  background: 'linear-gradient(135deg, #1DD882 0%, #1DD882 15%, rgba(29, 216, 130, 0.5) 20%, rgba(29, 216, 130, 0.2) 25%, #FFFFFF 30%, #FFFFFF 100%)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  backgroundClip: 'text',
   
   '@md': {
     fontSize: '$7xl',
+    marginBottom: '$6',
   },
 })
 
 const HeroSubtitle = styled('p', {
-  fontSize: '$xl',
+  fontSize: '$base',
   color: '$textSecondary',
-  marginBottom: '$8',
+  marginBottom: '$6',
   lineHeight: '$relaxed',
+  
+  '@md': {
+    fontSize: '$xl',
+    marginBottom: '$8',
+  },
 })
 
 const CTAButton = styled(Link, {
   display: 'inline-block',
   padding: '$3 $6',
-  backgroundColor: '$accent',
+  background: 'linear-gradient(135deg, #1DD882 0%, #19C274 100%)',
   color: '$background',
   borderRadius: '$md',
-  fontSize: '$base',
+  fontSize: '$sm',
   fontWeight: '$medium',
-  transition: '$default',
+  transition: 'all 0.3s ease',
+  position: 'relative',
+  overflow: 'hidden',
   
-  '&:hover': {
-    backgroundColor: '$accentHover',
+  '@md': {
+    fontSize: '$base',
+  },
+  
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'linear-gradient(135deg, #19C274 0%, #16A866 100%)',
+    opacity: 0,
+    transition: 'opacity 0.3s ease',
+  },
+  
+  '&:hover::before': {
+    opacity: 1,
+  },
+  
+  '& span': {
+    position: 'relative',
+    zIndex: 1,
   },
 })
 
 const Section = styled('section', {
-  paddingTop: '$16',
-  paddingBottom: '$16',
+  paddingTop: '$8',
+  paddingBottom: '$8',
+  
+  '@md': {
+    paddingTop: '$16',
+    paddingBottom: '$16',
+  },
 })
 
 const SectionTitle = styled('h2', {
-  fontSize: '$4xl',
+  fontSize: '$2xl',
   fontWeight: '$semibold',
-  marginBottom: '$8',
+  marginBottom: '$6',
+  
+  '@md': {
+    fontSize: '$4xl',
+    marginBottom: '$8',
+  },
 })
 
 const Grid = styled('div', {
   display: 'grid',
   gridTemplateColumns: '1fr',
-  gap: '$6',
+  gap: '$4',
   
   '@md': {
     gridTemplateColumns: 'repeat(2, 1fr)',
+    gap: '$6',
   },
 })
 
 const Card = styled('div', {
-  padding: '$6',
+  padding: '$4',
   border: '1px solid $border',
   borderRadius: '$lg',
   transition: '$default',
   
+  '@md': {
+    padding: '$6',
+  },
+  
   '&:hover': {
-    borderColor: '$textSecondary',
+    borderColor: '$green',
   },
 })
 
 const CardTitle = styled('h3', {
-  fontSize: '$xl',
+  fontSize: '$lg',
   fontWeight: '$semibold',
   marginBottom: '$2',
+  
+  '@md': {
+    fontSize: '$xl',
+  },
 })
 
 const CardDescription = styled('p', {
-  fontSize: '$base',
+  fontSize: '$sm',
   color: '$textSecondary',
   lineHeight: '$relaxed',
+  
+  '@md': {
+    fontSize: '$base',
+  },
 })
 
 export default function HomePage() {
@@ -96,7 +157,7 @@ export default function HomePage() {
           <HeroSubtitle>
             WheyDev builds tools and experiments for developers and creators—helping you grow in skills, productivity, and creativity.
           </HeroSubtitle>
-          <CTAButton href="/labs">Explore Labs</CTAButton>
+          <CTAButton href="/labs"><span>Explore Labs</span></CTAButton>
         </Hero>
         
         <Section>
