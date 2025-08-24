@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { styled } from '@/stitches.config'
 import { Container } from './Container'
@@ -24,6 +25,9 @@ const Nav = styled('nav', {
 })
 
 const Logo = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '$2',
   fontSize: '$xl',
   fontWeight: '$bold',
   letterSpacing: '$tight',
@@ -79,7 +83,6 @@ export function Header({
   projectName = 'WheyDev', 
   showAuth = false,
   navItems = [
-    { href: '/', label: 'Home' },
     { href: '/blog', label: 'Blog' },
     { href: '/labs', label: 'Labs' },
     { href: '/about', label: 'About' },
@@ -98,7 +101,14 @@ export function Header({
       <Container>
         <Nav>
           <Logo>
-            <Link href="/">{projectName}</Link>
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Image 
+                src="/logo.svg" 
+                alt="WheyDev Logo" 
+                width={150} 
+                height={150} 
+              />
+            </Link>
           </Logo>
           
           <NavLinks>
