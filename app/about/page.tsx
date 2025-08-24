@@ -5,15 +5,25 @@ import { Container } from '@/components/Container'
 import { styled } from '@/stitches.config'
 
 const PageHeader = styled('div', {
-  paddingTop: '$12',
-  paddingBottom: '$12',
+  paddingTop: '$6',
+  paddingBottom: '$6',
   borderBottom: '1px solid $border',
+  
+  '@md': {
+    paddingTop: '$12',
+    paddingBottom: '$12',
+  },
 })
 
 const PageTitle = styled('h1', {
-  fontSize: '$5xl',
+  fontSize: '$2xl',
   fontWeight: '$bold',
-  marginBottom: '$4',
+  marginBottom: '$3',
+  
+  '@md': {
+    fontSize: '$5xl',
+    marginBottom: '$4',
+  },
 })
 
 const Content = styled('div', {
@@ -66,7 +76,7 @@ export default function AboutPage() {
         
         <Content>
           <p>
-            WheyDev is an independent lab building minimal products for modern work founded by Eder Christian.
+            WheyDev is an independent lab building minimal products for modern work founded by <a href="https://ederchristian.com" target="_blank" rel="noopener noreferrer" style={{ color: '#1DD882', textDecoration: 'underline' }}>Eder Christian</a>.
           </p>
           
           <p>
