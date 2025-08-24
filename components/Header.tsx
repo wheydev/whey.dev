@@ -8,6 +8,9 @@ import { Container } from './Container'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import { useState, useEffect } from 'react'
 
+const PROJECT_NAME = process.env.NEXT_PUBLIC_PROJECT_NAME || 'WheyDev'
+const PROJECT_LOGO = process.env.NEXT_PUBLIC_PROJECT_LOGO || '/logo.svg'
+
 const HeaderWrapper = styled('header', {
   position: 'sticky',
   top: 0,
@@ -178,7 +181,7 @@ interface HeaderProps {
 }
 
 export function Header({ 
-  projectName = 'WheyDev', 
+  projectName = PROJECT_NAME, 
   showAuth = false,
   navItems = [
     { href: '/blog', label: 'Blog' },
@@ -206,8 +209,8 @@ export function Header({
           <Logo>
             <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <Image 
-                src="/logo.svg" 
-                alt="WheyDev Logo" 
+                src={PROJECT_LOGO} 
+                alt={`${PROJECT_NAME} Logo`} 
                 width={120} 
                 height={120} 
               />
