@@ -7,15 +7,25 @@ import { useState, useMemo } from 'react'
 import type { Post } from '@/lib/mdx'
 
 const PageHeader = styled('div', {
-  paddingTop: '$12',
-  paddingBottom: '$12',
+  paddingTop: '$6',
+  paddingBottom: '$6',
   borderBottom: '1px solid $border',
+  
+  '@md': {
+    paddingTop: '$12',
+    paddingBottom: '$12',
+  },
 })
 
 const PageTitle = styled('h1', {
-  fontSize: '$5xl',
+  fontSize: '$2xl',
   fontWeight: '$bold',
-  marginBottom: '$4',
+  marginBottom: '$3',
+  
+  '@md': {
+    fontSize: '$5xl',
+    marginBottom: '$4',
+  },
 })
 
 const FilterSection = styled('div', {
