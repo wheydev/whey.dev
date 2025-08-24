@@ -1,7 +1,6 @@
 'use client'
 
 import { styled } from '@/stitches.config'
-import { MDXRemote } from 'next-mdx-remote'
 import { format } from 'date-fns'
 import Link from 'next/link'
 import type { PostWithMDX } from '@/lib/mdx'
@@ -170,9 +169,10 @@ const PostFooter = styled('footer', {
 
 interface BlogPostProps {
   post: PostWithMDX
+  children: React.ReactNode
 }
 
-export default function BlogPost({ post }: BlogPostProps) {
+export default function BlogPost({ post, children }: BlogPostProps) {
   return (
     <>
       <BackLink href="/blog">Back to Blog</BackLink>
@@ -189,7 +189,7 @@ export default function BlogPost({ post }: BlogPostProps) {
       </PostHeader>
 
       <PostContent>
-        <MDXRemote {...post.content} />
+        {children}
       </PostContent>
 
       {post.tags && post.tags.length > 0 && (
