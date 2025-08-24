@@ -9,7 +9,7 @@ const PageHeader = styled('div', {
   paddingTop: '$6',
   paddingBottom: '$6',
   borderBottom: '1px solid $border',
-  
+
   '@md': {
     paddingTop: '$12',
     paddingBottom: '$12',
@@ -21,7 +21,7 @@ const PageTitle = styled('h1', {
   fontWeight: '$bold',
   marginBottom: '$3',
   color: '$textPrimary',
-  
+
   '@md': {
     fontSize: '$5xl',
     marginBottom: '$4',
@@ -32,7 +32,7 @@ const PageDescription = styled('p', {
   fontSize: '$base',
   color: '$textSecondary',
   lineHeight: '$relaxed',
-  
+
   '@md': {
     fontSize: '$lg',
   },
@@ -43,7 +43,7 @@ const ProjectsGrid = styled('div', {
   gridTemplateColumns: '1fr',
   gap: '$6',
   paddingTop: '$8',
-  
+
   '@md': {
     gridTemplateColumns: 'repeat(2, 1fr)',
     gap: '$8',
@@ -60,11 +60,11 @@ const ProjectCard = styled('div', {
   cursor: 'not-allowed',
   position: 'relative',
   overflow: 'hidden',
-  
+
   '@md': {
     padding: '$8',
   },
-  
+
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -84,7 +84,6 @@ const ProjectContent = styled('div', {
   zIndex: 2,
 })
 
-
 const ProjectIcon = styled('div', {
   width: '48px',
   height: '48px',
@@ -101,7 +100,7 @@ const ProjectName = styled('h3', {
   fontSize: '$xl',
   fontWeight: '$semibold',
   marginBottom: '$2',
-  
+
   '@md': {
     fontSize: '$2xl',
   },
@@ -112,7 +111,7 @@ const ProjectDescription = styled('p', {
   color: '$textSecondary',
   lineHeight: '$relaxed',
   marginBottom: '$4',
-  
+
   '@md': {
     fontSize: '$base',
   },
@@ -127,7 +126,7 @@ const ProjectStatus = styled('span', {
   fontWeight: '$medium',
   textTransform: 'uppercase',
   letterSpacing: '$wide',
-  
+
   variants: {
     status: {
       live: {

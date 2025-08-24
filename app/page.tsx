@@ -8,7 +8,7 @@ import Link from 'next/link'
 const Hero = styled('section', {
   paddingTop: '$12',
   paddingBottom: '$12',
-  
+
   '@md': {
     paddingTop: '$20',
     paddingBottom: '$20',
@@ -36,7 +36,7 @@ const HeroSubtitle = styled('p', {
   color: '$textSecondary',
   marginBottom: '$6',
   lineHeight: '$relaxed',
-  
+
   '@md': {
     fontSize: '$xl',
     marginBottom: '$8',
@@ -54,11 +54,11 @@ const CTAButton = styled(Link, {
   transition: 'all 0.3s ease',
   position: 'relative',
   overflow: 'hidden',
-  
+
   '@md': {
     fontSize: '$base',
   },
-  
+
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -70,11 +70,11 @@ const CTAButton = styled(Link, {
     opacity: 0,
     transition: 'opacity 0.3s ease',
   },
-  
+
   '&:hover::before': {
     opacity: 1,
   },
-  
+
   '& span': {
     position: 'relative',
     zIndex: 1,
@@ -84,7 +84,7 @@ const CTAButton = styled(Link, {
 const Section = styled('section', {
   paddingTop: '$8',
   paddingBottom: '$8',
-  
+
   '@md': {
     paddingTop: '$16',
     paddingBottom: '$16',
@@ -95,7 +95,7 @@ const SectionTitle = styled('h2', {
   fontSize: '$2xl',
   fontWeight: '$semibold',
   marginBottom: '$6',
-  
+
   '@md': {
     fontSize: '$4xl',
     marginBottom: '$8',
@@ -106,7 +106,7 @@ const Grid = styled('div', {
   display: 'grid',
   gridTemplateColumns: '1fr',
   gap: '$4',
-  
+
   '@md': {
     gridTemplateColumns: 'repeat(2, 1fr)',
     gap: '$6',
@@ -118,7 +118,7 @@ const Card = styled('div', {
   border: '1px solid $border',
   borderRadius: '$lg',
   transition: '$default',
-  
+
   '@md': {
     padding: '$6',
   },
@@ -132,7 +132,7 @@ const CardTitle = styled('h3', {
   fontSize: '$lg',
   fontWeight: '$semibold',
   marginBottom: '$2',
-  
+
   '@md': {
     fontSize: '$xl',
   },
@@ -142,7 +142,7 @@ const CardDescription = styled('p', {
   fontSize: '$sm',
   color: '$textSecondary',
   lineHeight: '$relaxed',
-  
+
   '@md': {
     fontSize: '$base',
   },
@@ -159,7 +159,7 @@ export default function HomePage() {
           </HeroSubtitle>
           <CTAButton href="/labs"><span>Explore Labs</span></CTAButton>
         </Hero>
-        
+
         <Section>
           <SectionTitle>Our Values</SectionTitle>
           <Grid>
