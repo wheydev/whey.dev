@@ -190,15 +190,15 @@ export function Header({
   const { data: session } = showAuth ? useSession() : { data: null }
   const [mounted, setMounted] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  
+
   useEffect(() => {
     setMounted(true)
   }, [])
-  
+
   useEffect(() => {
     setMobileMenuOpen(false)
   }, [pathname])
-  
+
   return (
     <HeaderWrapper>
       <Container>
