@@ -38,7 +38,6 @@ export function Layout({
     <LayoutWrapper>
       <Header 
         projectName={projectName} 
-        showAuth={showAuth}
         navItems={navItems}
       />
       <Main>{children}</Main>

@@ -8,7 +8,7 @@ export const Container = styled('div', {
   marginRight: 'auto',
   paddingLeft: '$4',
   paddingRight: '$4',
-  
+
   '@sm': {
     maxWidth: '640px',
   },
@@ -21,7 +21,7 @@ export const Container = styled('div', {
   '@xl': {
     maxWidth: '1280px',
   },
-  
+
   variants: {
     size: {
       sm: {
@@ -44,7 +44,7 @@ export const Container = styled('div', {
       },
     },
   },
-  
+
   defaultVariants: {
     size: 'lg',
   },

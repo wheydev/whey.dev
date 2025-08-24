@@ -14,7 +14,7 @@ const FooterContent = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '$4',
-  
+
   '@md': {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -37,7 +37,7 @@ const FooterLink = styled('a', {
   fontSize: '$sm',
   color: '$textMuted',
   transition: '$default',
-  
+
   '&:hover': {
     color: '$textPrimary',
   },
@@ -59,17 +59,17 @@ export function Footer({
   ]
 }: FooterProps) {
   const currentYear = new Date().getFullYear()
-  
+
   return (
     <FooterWrapper>
       <Container>
         <FooterContent>
           <Copyright>
-            Copyright © {currentYear} | All rights reserved<br />
+            Copyright &copy; {currentYear} | All rights reserved<br />
             Built independently<br />
             Created by <a href="https://ederchristian.com" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Eder Christian</a>
           </Copyright>
-          
+
           <FooterLinks>
             {links.map((link) => (
               <FooterLink
