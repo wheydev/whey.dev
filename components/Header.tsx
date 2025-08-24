@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { styled } from '@/stitches.config'
 import { Container } from './Container'
-import { useSession, signIn, signOut } from 'next-auth/react'
 import { useState, useEffect } from 'react'
 
 const PROJECT_NAME = process.env.NEXT_PUBLIC_PROJECT_NAME || 'WheyDev'
@@ -25,7 +24,7 @@ const Nav = styled('nav', {
   alignItems: 'center',
   justifyContent: 'space-between',
   height: '56px',
-  
+
   '@md': {
     height: '64px',
   },
@@ -38,7 +37,7 @@ const Logo = styled('div', {
   fontSize: '$lg',
   fontWeight: '$bold',
   letterSpacing: '$tight',
-  
+
   '@md': {
     fontSize: '$xl',
   },
@@ -48,7 +47,7 @@ const NavLinks = styled('div', {
   display: 'none',
   gap: '$8',
   alignItems: 'center',
-  
+
   '@md': {
     display: 'flex',
   },
@@ -62,18 +61,18 @@ const MobileMenuButton = styled('button', {
   backgroundColor: 'transparent',
   border: 'none',
   cursor: 'pointer',
-  
+
   '@md': {
     display: 'none',
   },
-  
+
   '& span': {
     width: '20px',
     height: '2px',
     backgroundColor: '$textPrimary',
     transition: 'all 0.3s ease',
   },
-  
+
   variants: {
     open: {
       true: {
@@ -105,7 +104,7 @@ const MobileMenu = styled('div', {
   transition: 'all 0.3s ease',
   zIndex: 40,
   pointerEvents: 'none',
-  
+
   variants: {
     open: {
       true: {
@@ -124,12 +123,12 @@ const MobileNavLink = styled(Link, {
   color: '$textSecondary',
   transition: '$default',
   borderRadius: '$md',
-  
+
   '&:hover': {
     color: '$textPrimary',
     backgroundColor: '$gray2',
   },
-  
+
   variants: {
     active: {
       true: {
@@ -144,11 +143,11 @@ const NavLink = styled(Link, {
   fontSize: '$sm',
   color: '$textSecondary',
   transition: '$default',
-  
+
   '&:hover': {
     color: '$textPrimary',
   },
-  
+
   variants: {
     active: {
       true: {
@@ -168,7 +167,7 @@ const AuthButton = styled('button', {
   color: '$textPrimary',
   cursor: 'pointer',
   transition: '$default',
-  
+
   '&:hover': {
     backgroundColor: '$gray2',
   },
@@ -176,13 +175,11 @@ const AuthButton = styled('button', {
 
 interface HeaderProps {
   projectName?: string
-  showAuth?: boolean
   navItems?: Array<{ href: string; label: string }>
 }
 
 export function Header({ 
   projectName = PROJECT_NAME, 
-  showAuth = false,
   navItems = [
     { href: '/blog', label: 'Blog' },
     { href: '/labs', label: 'Labs' },
@@ -190,7 +187,6 @@ export function Header({
   ]
 }: HeaderProps) {
   const pathname = usePathname()
-  const { data: session } = showAuth ? useSession() : { data: null }
   const [mounted, setMounted] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -227,25 +223,8 @@ export function Header({
                 {item.label}
               </NavLink>
             ))}
-            
-            {showAuth && mounted && (
-              <>
-                {session ? (
-                  <>
-                    <NavLink href="/dashboard">Dashboard</NavLink>
-                    <AuthButton onClick={() => signOut()}>
-                      Sign out
-                    </AuthButton>
-                  </>
-                ) : (
-                  <AuthButton onClick={() => signIn('google')}>
-                    Sign in
-                  </AuthButton>
-                )}
-              </>
-            )}
           </NavLinks>
-          
+
           <MobileMenuButton 
             open={mobileMenuOpen}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -256,7 +235,7 @@ export function Header({
           </MobileMenuButton>
         </Nav>
       </Container>
-      
+
       <MobileMenu open={mobileMenuOpen}>
         <Container>
           {navItems.map((item) => (
@@ -268,29 +247,6 @@ export function Header({
               {item.label}
             </MobileNavLink>
           ))}
-          
-          {showAuth && mounted && (
-            <>
-              {session ? (
-                <>
-                  <MobileNavLink href="/dashboard">Dashboard</MobileNavLink>
-                  <AuthButton 
-                    onClick={() => signOut()}
-                    style={{ width: '100%', marginTop: '8px' }}
-                  >
-                    Sign out
-                  </AuthButton>
-                </>
-              ) : (
-                <AuthButton 
-                  onClick={() => signIn('google')}
-                  style={{ width: '100%', marginTop: '8px' }}
-                >
-                  Sign in
-                </AuthButton>
-              )}
-            </>
-          )}
         </Container>
       </MobileMenu>
     </HeaderWrapper>
