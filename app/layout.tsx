@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import StitchesProvider from '@/components/StitchesProvider'
 import StitchesRegistry from '@/components/StitchesRegistry'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 export const metadata: Metadata = {
   title: 'WheyDev - Independent Lab Building Minimal Products',
@@ -18,24 +19,9 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="alternate icon" href="/favicon.ico" />
         <meta property="og:image" content="/wheydev-og.png" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-DMT902R26S"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-DMT902R26S');
-            `,
-          }}
-        />
-        <script 
-          async 
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2812082397877024"
-          crossOrigin="anonymous"
-        ></script>
       </head>
       <body>
+        <GoogleAnalytics />
         <StitchesRegistry>
           <StitchesProvider>
             {children}
