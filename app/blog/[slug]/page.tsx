@@ -44,7 +44,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   
   return (
     <Layout>
-      <Container size="md">
+      <Container>
         <BlogPost post={post} />
       </Container>
     </Layout>
