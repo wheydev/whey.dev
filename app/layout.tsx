@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import StitchesProvider from '@/components/StitchesProvider'
+import StitchesRegistry from '@/components/StitchesRegistry'
 
 export const metadata: Metadata = {
   title: 'WheyDev - Independent Lab Building Minimal Products',
@@ -35,9 +36,11 @@ export default function RootLayout({
         ></script>
       </head>
       <body>
-        <StitchesProvider>
-          {children}
-        </StitchesProvider>
+        <StitchesRegistry>
+          <StitchesProvider>
+            {children}
+          </StitchesProvider>
+        </StitchesRegistry>
       </body>
     </html>
   )
