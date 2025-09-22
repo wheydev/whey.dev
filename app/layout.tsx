@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import StitchesProvider from '@/components/StitchesProvider'
 import StitchesRegistry from '@/components/StitchesRegistry'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
+import { Providers } from './providers'
+import PostHogPageView from '@/components/PostHogPageView'
 
 export const metadata: Metadata = {
   title: 'WheyDev - Independent Lab Building Minimal Products',
@@ -24,7 +26,10 @@ export default function RootLayout({
         <GoogleAnalytics />
         <StitchesRegistry>
           <StitchesProvider>
-            {children}
+            <Providers>
+              <PostHogPageView />
+              {children}
+            </Providers>
           </StitchesProvider>
         </StitchesRegistry>
       </body>
