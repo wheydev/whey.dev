@@ -5,6 +5,8 @@ import { format } from 'date-fns'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import type { PostWithMDX } from '@/lib/mdx'
+import posthog from 'posthog-js'
+import { useEffect } from 'react'
 
 const MDXContent = dynamic(() => import('./MDXContent'), {
   ssr: false,
@@ -178,9 +180,36 @@ interface BlogPostProps {
 }
 
 export default function BlogPost({ post }: BlogPostProps) {
+  useEffect(() => {
+    const startTime = Date.now()
+
+    posthog.capture('blog_post_viewed', {
+      post_title: post.title,
+      post_slug: post.slug,
+      tags: post.tags,
+      author: post.author,
+      date: post.date
+    })
+
+    return () => {
+      const timeSpent = Math.floor((Date.now() - startTime) / 1000)
+      posthog.capture('blog_post_time_spent', {
+        post_slug: post.slug,
+        time_seconds: timeSpent
+      })
+    }
+  }, [post])
+
   return (
     <>
-      <BackLink href="/blog">Back to Blog</BackLink>
+      <BackLink
+        href="/blog"
+        onClick={() => posthog.capture('blog_back_clicked', {
+          from_post: post.slug
+        })}
+      >
+        Back to Blog
+      </BackLink>
 
       <PostHeader>
         <PostTitle>{post.title}</PostTitle>
@@ -202,7 +231,16 @@ export default function BlogPost({ post }: BlogPostProps) {
           <h3 style={{ fontSize: '1.125rem', marginBottom: '0.75rem' }}>Tags</h3>
           <TagsList>
             {post.tags.map((tag) => (
-              <Tag key={tag}>{tag}</Tag>
+              <Tag
+                key={tag}
+                onClick={() => posthog.capture('blog_tag_clicked', {
+                  tag: tag,
+                  from_post: post.slug
+                })}
+                style={{ cursor: 'pointer' }}
+              >
+                {tag}
+              </Tag>
             ))}
           </TagsList>
         </PostFooter>
