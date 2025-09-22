@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { format } from 'date-fns'
 import { useState, useMemo } from 'react'
 import type { Post } from '@/lib/mdx'
+import posthog from 'posthog-js'
 
 const PageHeader = styled('div', {
   paddingTop: '$6',
@@ -176,7 +177,7 @@ const POSTS_PER_PAGE = 5
 export default function BlogListWithPagination({ posts }: BlogListWithPaginationProps) {
   const [currentPage, setCurrentPage] = useState(1)
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
-  
+
   // Extract all unique tags
   const allTags = useMemo(() => {
     const tags = new Set<string>()
@@ -185,23 +186,28 @@ export default function BlogListWithPagination({ posts }: BlogListWithPagination
     })
     return Array.from(tags).sort()
   }, [posts])
-  
+ 
   // Filter posts by selected tag
   const filteredPosts = useMemo(() => {
     if (!selectedTag) return posts
     return posts.filter(post => post.tags?.includes(selectedTag))
   }, [posts, selectedTag])
-  
+
   // Calculate pagination
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE)
   const startIndex = (currentPage - 1) * POSTS_PER_PAGE
   const endIndex = startIndex + POSTS_PER_PAGE
   const currentPosts = filteredPosts.slice(startIndex, endIndex)
-  
+
   // Reset to page 1 when filter changes
   const handleTagFilter = (tag: string | null) => {
     setSelectedTag(tag)
     setCurrentPage(1)
+    posthog.capture('blog_filter_changed', {
+      filter_type: 'tag',
+      tag: tag || 'all',
+      total_posts: tag ? posts.filter(p => p.tags?.includes(tag)).length : posts.length
+    })
   }
   
   // Generate page numbers to display
@@ -236,10 +242,10 @@ export default function BlogListWithPagination({ posts }: BlogListWithPagination
         pages.push(totalPages)
       }
     }
-    
+
     return pages
   }
-  
+
   return (
     <>
       <PageHeader>
@@ -274,7 +280,17 @@ export default function BlogListWithPagination({ posts }: BlogListWithPagination
           currentPosts.map((post) => (
             <PostItem key={post.slug}>
               <PostTitle>
-                <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                <Link
+                  href={`/blog/${post.slug}`}
+                  onClick={() => posthog.capture('blog_post_clicked', {
+                    post_title: post.title,
+                    post_slug: post.slug,
+                    tags: post.tags,
+                    location: 'blog_list'
+                  })}
+                >
+                  {post.title}
+                </Link>
               </PostTitle>
               
               <PostMeta>
@@ -299,7 +315,15 @@ export default function BlogListWithPagination({ posts }: BlogListWithPagination
       {totalPages > 1 && (
         <Pagination>
           <PageButton
-            onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+            onClick={() => {
+              const newPage = Math.max(1, currentPage - 1)
+              setCurrentPage(newPage)
+              posthog.capture('blog_pagination', {
+                action: 'previous',
+                page: newPage,
+                total_pages: totalPages
+              })
+            }}
             disabled={currentPage === 1}
           >
             Previous
@@ -312,7 +336,14 @@ export default function BlogListWithPagination({ posts }: BlogListWithPagination
               <PageButton
                 key={page}
                 active={currentPage === page}
-                onClick={() => setCurrentPage(page as number)}
+                onClick={() => {
+                  setCurrentPage(page as number)
+                  posthog.capture('blog_pagination', {
+                    action: 'page_number',
+                    page: page,
+                    total_pages: totalPages
+                  })
+                }}
               >
                 {page}
               </PageButton>
@@ -320,7 +351,15 @@ export default function BlogListWithPagination({ posts }: BlogListWithPagination
           ))}
           
           <PageButton
-            onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+            onClick={() => {
+              const newPage = Math.min(totalPages, currentPage + 1)
+              setCurrentPage(newPage)
+              posthog.capture('blog_pagination', {
+                action: 'next',
+                page: newPage,
+                total_pages: totalPages
+              })
+            }}
             disabled={currentPage === totalPages}
           >
             Next
