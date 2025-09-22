@@ -3,6 +3,7 @@
 import { Layout } from '@/components/Layout'
 import { Container } from '@/components/Container'
 import { styled } from '@/stitches.config'
+import posthog from 'posthog-js'
 
 const PageHeader = styled('div', {
   paddingTop: '$6',
@@ -76,7 +77,19 @@ export default function AboutPage() {
 
         <Content>
           <p>
-            WheyDev is an independent lab building minimal products for modern work founded by <a href="https://ederchristian.com" target="_blank" rel="noopener noreferrer" style={{ color: '#1DD882', textDecoration: 'underline' }}>Eder Christian</a>.
+            WheyDev is an independent lab building minimal products for modern work founded by <a
+              href="https://ederchristian.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: '#1DD882', textDecoration: 'underline' }}
+              onClick={() => posthog.capture('about_link_clicked', {
+                link: 'eder_christian',
+                href: 'https://ederchristian.com',
+                location: 'about_page'
+              })}
+            >
+              Eder Christian
+            </a>.
           </p>
 
           <p>
