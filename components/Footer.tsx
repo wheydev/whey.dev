@@ -2,6 +2,7 @@
 
 import { styled } from '@/stitches.config'
 import { Container } from './Container'
+import posthog from 'posthog-js'
 
 const FooterWrapper = styled('footer', {
   marginTop: 'auto',
@@ -67,7 +68,19 @@ export function Footer({
           <Copyright>
             Copyright &copy; {currentYear} | All rights reserved<br />
             Built independently<br />
-            Created by <a href="https://ederchristian.com" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Eder Christian</a>
+            Created by <a
+              href="https://ederchristian.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'inherit', textDecoration: 'underline' }}
+              onClick={() => posthog.capture('footer_link_clicked', {
+                link: 'eder_christian',
+                href: 'https://ederchristian.com',
+                location: 'footer_copyright'
+              })}
+            >
+              Eder Christian
+            </a>
           </Copyright>
 
           <FooterLinks>
@@ -77,6 +90,11 @@ export function Footer({
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => posthog.capture('social_link_clicked', {
+                  platform: link.label.toLowerCase(),
+                  href: link.href,
+                  location: 'footer'
+                })}
               >
                 {link.label}
               </FooterLink>
