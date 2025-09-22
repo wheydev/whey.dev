@@ -4,6 +4,7 @@ import { Layout } from '@/components/Layout'
 import { Container } from '@/components/Container'
 import { styled } from '@/stitches.config'
 import Link from 'next/link'
+import posthog from 'posthog-js'
 
 const Hero = styled('section', {
   paddingTop: '$12',
@@ -118,11 +119,12 @@ const Card = styled('div', {
   border: '1px solid $border',
   borderRadius: '$lg',
   transition: '$default',
+  cursor: 'pointer',
 
   '@md': {
     padding: '$6',
   },
-  
+
   '&:hover': {
     borderColor: '$green',
   },
@@ -157,31 +159,59 @@ export default function HomePage() {
           <HeroSubtitle>
             WheyDev builds tools and experiments for developers and creators—helping you grow in skills, productivity, and creativity.
           </HeroSubtitle>
-          <CTAButton href="/labs"><span>Explore Labs</span></CTAButton>
+          <CTAButton
+            href="/labs"
+            onClick={() => posthog.capture('cta_clicked', {
+              button: 'explore_labs',
+              location: 'homepage_hero'
+            })}
+          >
+            <span>Explore Labs</span>
+          </CTAButton>
         </Hero>
 
         <Section>
           <SectionTitle>Our Values</SectionTitle>
           <Grid>
-            <Card>
+            <Card
+              onClick={() => posthog.capture('value_card_clicked', {
+                value: 'strength',
+                location: 'homepage_values'
+              })}
+            >
               <CardTitle>Strength</CardTitle>
               <CardDescription>
                 We build with resilience, determination, and discipline.
               </CardDescription>
             </Card>
-            <Card>
+            <Card
+              onClick={() => posthog.capture('value_card_clicked', {
+                value: 'simplicity',
+                location: 'homepage_values'
+              })}
+            >
               <CardTitle>Simplicity</CardTitle>
               <CardDescription>
                 We design minimal tools that do one thing well.
               </CardDescription>
             </Card>
-            <Card>
+            <Card
+              onClick={() => posthog.capture('value_card_clicked', {
+                value: 'experimentation',
+                location: 'homepage_values'
+              })}
+            >
               <CardTitle>Experimentation</CardTitle>
               <CardDescription>
                 We test ideas quickly and learn in public.
               </CardDescription>
             </Card>
-            <Card>
+            <Card
+              onClick={() => posthog.capture('value_card_clicked', {
+                value: 'curiosity',
+                location: 'homepage_values'
+              })}
+            >
               <CardTitle>Curiosity</CardTitle>
               <CardDescription>
                 We stay open, connected, and eager to explore.
