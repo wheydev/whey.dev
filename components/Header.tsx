@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { styled } from '@/stitches.config'
 import { Container } from './Container'
 import { useState, useEffect } from 'react'
+import posthog from 'posthog-js'
 
 const PROJECT_NAME = process.env.NEXT_PUBLIC_PROJECT_NAME || 'WheyDev'
 const PROJECT_LOGO = process.env.NEXT_PUBLIC_PROJECT_LOGO || '/logo.svg'
@@ -203,12 +204,16 @@ export function Header({
       <Container>
         <Nav>
           <Logo>
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Image 
-                src={PROJECT_LOGO} 
-                alt={`${PROJECT_NAME} Logo`} 
-                width={120} 
-                height={120} 
+            <Link
+              href="/"
+              style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+              onClick={() => posthog.capture('logo_clicked', { location: 'header' })}
+            >
+              <Image
+                src={PROJECT_LOGO}
+                alt={`${PROJECT_NAME} Logo`}
+                width={120}
+                height={120}
               />
             </Link>
           </Logo>
@@ -219,15 +224,25 @@ export function Header({
                 key={item.href}
                 href={item.href}
                 active={pathname === item.href}
+                onClick={() => posthog.capture('nav_link_clicked', {
+                  link: item.label.toLowerCase(),
+                  href: item.href,
+                  location: 'desktop_nav'
+                })}
               >
                 {item.label}
               </NavLink>
             ))}
           </NavLinks>
 
-          <MobileMenuButton 
+          <MobileMenuButton
             open={mobileMenuOpen}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => {
+              setMobileMenuOpen(!mobileMenuOpen)
+              posthog.capture('mobile_menu_toggled', {
+                action: mobileMenuOpen ? 'closed' : 'opened'
+              })
+            }}
           >
             <span />
             <span />
@@ -243,6 +258,11 @@ export function Header({
               key={item.href}
               href={item.href}
               active={pathname === item.href}
+              onClick={() => posthog.capture('nav_link_clicked', {
+                link: item.label.toLowerCase(),
+                href: item.href,
+                location: 'mobile_nav'
+              })}
             >
               {item.label}
             </MobileNavLink>
