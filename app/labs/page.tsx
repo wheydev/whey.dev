@@ -3,7 +3,7 @@
 import { Layout } from '@/components/Layout'
 import { Container } from '@/components/Container'
 import { styled } from '@/stitches.config'
-import Link from 'next/link'
+import posthog from 'posthog-js'
 
 const PageHeader = styled('div', {
   paddingTop: '$6',
@@ -175,8 +175,13 @@ export default function LabsPage() {
         
         <ProjectsGrid>
           {labs.map((lab) => (
-            <ProjectCard 
+            <ProjectCard
               key={lab.name}
+              onClick={() => posthog.capture('lab_card_clicked', {
+                lab_name: lab.name.toLowerCase(),
+                status: lab.status,
+                href: lab.href
+              })}
             >
               <ProjectContent>
                 <ProjectIcon>{lab.icon}</ProjectIcon>
