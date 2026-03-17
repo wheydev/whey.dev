@@ -56,7 +56,7 @@ export function Footer({
     { href: 'https://instagram.com/wheydev', label: 'Instagram' },
     { href: 'https://youtube.com/@wheydev', label: 'YouTube' },
     { href: 'https://github.com/wheydev', label: 'GitHub' },
-    { href: 'mailto:wheydevco@gmail.com', label: 'Email' },
+    { href: ['mai', 'lto:', 'eder', '@', 'whey', '.dev'].join(''), label: 'Email' },
   ]
 }: FooterProps) {
   const currentYear = new Date().getFullYear()
