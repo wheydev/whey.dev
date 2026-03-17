@@ -58,42 +58,25 @@ const ProjectCard = styled('div', {
   borderRadius: '$xl',
   transition: '$default',
   cursor: 'not-allowed',
-  position: 'relative',
-  overflow: 'hidden',
 
   '@md': {
     padding: '$8',
   },
-
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: 'rgba(10, 10, 10, 0.7)',
-    backdropFilter: 'blur(8px)',
-    zIndex: 1,
-    transition: 'opacity 0.3s ease',
-  },
-})
-
-const ProjectContent = styled('div', {
-  position: 'relative',
-  zIndex: 2,
 })
 
 const ProjectIcon = styled('div', {
   width: '48px',
   height: '48px',
+  minWidth: '48px',
+  minHeight: '48px',
   backgroundColor: '$gray2',
   borderRadius: '$lg',
   marginBottom: '$4',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  fontSize: '$2xl',
+  fontSize: '24px',
+  lineHeight: 1,
 })
 
 const ProjectName = styled('h3', {
@@ -104,6 +87,16 @@ const ProjectName = styled('h3', {
   '@md': {
     fontSize: '$2xl',
   },
+
+  variants: {
+    blurred: {
+      true: {
+        filter: 'blur(6px)',
+        userSelect: 'none',
+        pointerEvents: 'none',
+      },
+    },
+  },
 })
 
 const ProjectDescription = styled('p', {
@@ -111,9 +104,24 @@ const ProjectDescription = styled('p', {
   color: '$textSecondary',
   lineHeight: '$relaxed',
   marginBottom: '$4',
+  display: '-webkit-box',
+  '-webkit-line-clamp': '3',
+  '-webkit-box-orient': 'vertical',
+  overflow: 'hidden',
+  minHeight: 'calc(3 * 1.625em)',
 
   '@md': {
     fontSize: '$base',
+  },
+
+  variants: {
+    blurred: {
+      true: {
+        filter: 'blur(6px)',
+        userSelect: 'none',
+        pointerEvents: 'none',
+      },
+    },
   },
 })
 
@@ -147,18 +155,20 @@ const ProjectStatus = styled('span', {
 
 const labs = [
   {
-    name: 'Rayte',
-    description: 'Evaluate your YouTube thumbnails and titles with AI. Get instant feedback to improve your content performance.',
+    name: 'Gradon',
+    description: 'Track your career progress manually. Log PRs, courses, achievements, and generate AI summaries for performance reviews.',
     status: 'development' as const,
-    icon: '📊',
-    href: 'https://rayte.wheydev.com',
+    icon: '📈',
+    href: 'https://gradon.wheydev.com',
+    blurred: false,
   },
   {
-    name: 'Photo',
-    description: 'Transform your photos with AI. Create stunning variations from a single image.',
+    name: 'Coming Soon',
+    description: 'Nice try, inspector. You found the hidden text, but the secret stays sealed. No spoilers here. Come back later, curious one. Shipping faster than you think.',
     status: 'development' as const,
-    icon: '📸',
-    href: 'https://photo.wheydev.com',
+    icon: '🔒',
+    href: '#',
+    blurred: true,
   },
 ]
 
@@ -172,7 +182,7 @@ export default function LabsPage() {
             Experiments at the intersection of AI, productivity, and software.
           </PageDescription>
         </PageHeader>
-        
+
         <ProjectsGrid>
           {labs.map((lab) => (
             <ProjectCard
@@ -183,14 +193,14 @@ export default function LabsPage() {
                 href: lab.href
               })}
             >
-              <ProjectContent>
+              <div>
                 <ProjectIcon>{lab.icon}</ProjectIcon>
-                <ProjectName>{lab.name}</ProjectName>
-                <ProjectDescription>{lab.description}</ProjectDescription>
+                <ProjectName blurred={lab.blurred}>{lab.name}</ProjectName>
+                <ProjectDescription blurred={lab.blurred}>{lab.description}</ProjectDescription>
                 <ProjectStatus status={lab.status}>
                   {lab.status}
                 </ProjectStatus>
-              </ProjectContent>
+              </div>
             </ProjectCard>
           ))}
         </ProjectsGrid>
