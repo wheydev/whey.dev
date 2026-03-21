@@ -67,7 +67,7 @@ export function Footer({
         <FooterContent>
           <Copyright>
             Copyright &copy; {currentYear} | All rights reserved<br />
-            Built independently<br />
+            Built in public<br />
             Created by <a
               href="https://ederchristian.com"
               target="_blank"
