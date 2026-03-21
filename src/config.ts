@@ -4,7 +4,7 @@ export const SITE: Site = {
   website: "https://whey.dev",
   author: "Eder Christian",
   profile: "https://ederchristian.com/",
-  desc: "Building Strong Tools for Modern Makers",
+  desc: "Building Strong Products for Modern Makers",
   title: "WheyDev",
   ogImage: "wheydev-og.jpg",
   lightAndDarkMode: true,

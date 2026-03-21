@@ -6,8 +6,8 @@ import { Providers } from './providers'
 import PostHogPageView from '@/components/PostHogPageView'
 
 export const metadata: Metadata = {
-  title: 'WheyDev - Independent Lab Building Minimal Products',
-  description: 'WheyDev Labs explores ideas openly, creating tools that are simple, fast, and effective.',
+  title: 'WheyDev - Building Strong Products for Modern Makers',
+  description: 'WheyDev builds focused software products for developers and creators. Simple, fast, and built in public.',
 }
 
 export default function RootLayout({
