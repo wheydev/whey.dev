@@ -20,28 +20,25 @@ const Main = styled('main', {
 interface LayoutProps {
   children: React.ReactNode
   projectName?: string
-  showAuth?: boolean
   navItems?: Array<{ href: string; label: string }>
   footerLinks?: Array<{ href: string; label: string }>
 }
 
-export function Layout({ 
-  children, 
+export function Layout({
+  children,
   projectName,
-  showAuth,
   navItems,
   footerLinks
 }: LayoutProps) {
   globalStyles()
-  
+
   return (
     <LayoutWrapper>
-      <Header 
-        projectName={projectName} 
+      <Header
         navItems={navItems}
       />
       <Main>{children}</Main>
-      <Footer 
+      <Footer
         projectName={projectName}
         links={footerLinks}
       />

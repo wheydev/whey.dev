@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { styled } from '@/stitches.config'
 import { Container } from './Container'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import posthog from 'posthog-js'
 
 const PROJECT_NAME = process.env.NEXT_PUBLIC_PROJECT_NAME || 'WheyDev'
@@ -159,45 +159,25 @@ const NavLink = styled(Link, {
   },
 })
 
-const AuthButton = styled('button', {
-  fontSize: '$sm',
-  padding: '$2 $4',
-  borderRadius: '$md',
-  border: '1px solid $border',
-  backgroundColor: 'transparent',
-  color: '$textPrimary',
-  cursor: 'pointer',
-  transition: '$default',
-
-  '&:hover': {
-    backgroundColor: '$gray2',
-  },
-})
-
 interface HeaderProps {
-  projectName?: string
   navItems?: Array<{ href: string; label: string }>
 }
 
-export function Header({ 
-  projectName = PROJECT_NAME, 
+export function Header({
   navItems = [
+    { href: '/products', label: 'Products' },
     { href: '/blog', label: 'Blog' },
-    { href: '/labs', label: 'Labs' },
     { href: '/about', label: 'About' },
   ]
 }: HeaderProps) {
   const pathname = usePathname()
-  const [mounted, setMounted] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [prevPathname, setPrevPathname] = useState(pathname)
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  useEffect(() => {
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname)
     setMobileMenuOpen(false)
-  }, [pathname])
+  }
 
   return (
     <HeaderWrapper>
@@ -217,7 +197,7 @@ export function Header({
               />
             </Link>
           </Logo>
-          
+
           <NavLinks>
             {navItems.map((item) => (
               <NavLink
