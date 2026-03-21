@@ -155,18 +155,18 @@ export default function HomePage() {
     <Layout>
       <Container>
         <Hero>
-          <HeroTitle>Building Strong Tools for Modern Makers</HeroTitle>
+          <HeroTitle>Building Strong Products for Modern Makers</HeroTitle>
           <HeroSubtitle>
-            WheyDev builds tools and experiments for developers and creators—helping you grow in skills, productivity, and creativity.
+            WheyDev builds focused software products for developers and creators. Simple, fast, and built in public.
           </HeroSubtitle>
           <CTAButton
-            href="/labs"
+            href="/products"
             onClick={() => posthog.capture('cta_clicked', {
-              button: 'explore_labs',
+              button: 'see_products',
               location: 'homepage_hero'
             })}
           >
-            <span>Explore Labs</span>
+            <span>See Products</span>
           </CTAButton>
         </Hero>
 
@@ -197,13 +197,13 @@ export default function HomePage() {
             </Card>
             <Card
               onClick={() => posthog.capture('value_card_clicked', {
-                value: 'experimentation',
+                value: 'execution',
                 location: 'homepage_values'
               })}
             >
-              <CardTitle>Experimentation</CardTitle>
+              <CardTitle>Execution</CardTitle>
               <CardDescription>
-                We test ideas quickly and learn in public.
+                We ship fast, iterate often, and deliver real value.
               </CardDescription>
             </Card>
             <Card
