@@ -56,7 +56,7 @@ const Content = styled('div', {
       marginBottom: '$3',
       paddingLeft: '$6',
       position: 'relative',
-      
+
       '&::before': {
         content: '"→"',
         position: 'absolute',
@@ -77,7 +77,7 @@ export default function AboutPage() {
 
         <Content>
           <p>
-            WheyDev is an independent lab building minimal products for modern work founded by <a
+            WheyDev is a one-person software studio founded by <a
               href="https://ederchristian.com"
               target="_blank"
               rel="noopener noreferrer"
@@ -89,40 +89,25 @@ export default function AboutPage() {
               })}
             >
               Eder Christian
-            </a>.
+            </a>. The name comes from a simple idea: whey protein gives you strength at the gym, WheyDev gives you strength as a builder. It started with developers in mind, but the mission grew. Now it's for anyone who makes things.
           </p>
 
           <p>
-            We focus on experiments at the intersection of AI, software, and productivity—creating tools that are simple, fast, and effective.
-          </p>
-
-          <p>
-            WheyDev Labs explores ideas openly. Some experiments remain prototypes, others grow into standalone products—but all are built with the same principles: simplicity, curiosity, and impact.
-          </p>
-
-          <p>
-            We believe in learning in public, sharing progress, and building tools that help people do their best work.
+            We build focused products at the intersection of AI, productivity, and software, designed to be simple, fast, and useful from day one. Everything is built in public.
           </p>
 
           <h2>Mission</h2>
-          <p>To create products that make modern work faster, simpler, and more intentional.</p>
-
-          <h2>Purpose</h2>
-          <p>To design and ship lightweight tools that solve real problems in a changing world.</p>
-
-          <h2>Vision</h2>
-          <p>A global lab where ideas are tested quickly, shared openly, and scaled when they deliver real value.</p>
+          <p>To build strong, focused products that make modern work faster and more intentional.</p>
 
           <h2>Values</h2>
           <ul>
             <li>Strength</li>
             <li>Simplicity</li>
-            <li>Resilience</li>
-            <li>Determination</li>
-            <li>Discipline</li>
-            <li>Experimentation</li>
-            <li>Community</li>
+            <li>Execution</li>
             <li>Curiosity</li>
+            <li>Resilience</li>
+            <li>Discipline</li>
+            <li>Community</li>
           </ul>
         </Content>
       </Container>
