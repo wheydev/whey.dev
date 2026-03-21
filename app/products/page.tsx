@@ -3,6 +3,7 @@
 import { Layout } from '@/components/Layout'
 import { Container } from '@/components/Container'
 import { styled } from '@/stitches.config'
+import Link from 'next/link'
 import posthog from 'posthog-js'
 
 const PageHeader = styled('div', {
@@ -61,6 +62,22 @@ const ProjectCard = styled('div', {
 
   '@md': {
     padding: '$8',
+  },
+})
+
+const ProjectCardLink = styled(Link, {
+  display: 'block',
+  padding: '$6',
+  border: '1px solid $border',
+  borderRadius: '$xl',
+  transition: '$default',
+
+  '@md': {
+    padding: '$8',
+  },
+
+  '&:hover': {
+    borderColor: '$green',
   },
 })
 
@@ -153,13 +170,13 @@ const ProjectStatus = styled('span', {
   },
 })
 
-const labs = [
+const products = [
   {
     name: 'Gradon',
     description: 'Track your career progress manually. Log PRs, courses, achievements, and generate AI summaries for performance reviews.',
     status: 'development' as const,
     icon: '📈',
-    href: 'https://gradon.wheydev.com',
+    href: 'https://gradon.whey.dev',
     blurred: false,
   },
   {
@@ -172,36 +189,59 @@ const labs = [
   },
 ]
 
-export default function LabsPage() {
+export default function ProductsPage() {
   return (
     <Layout>
       <Container>
         <PageHeader>
-          <PageTitle>Labs</PageTitle>
+          <PageTitle>Products</PageTitle>
           <PageDescription>
-            Experiments at the intersection of AI, productivity, and software.
+            Software built at the intersection of AI, productivity, and software.
           </PageDescription>
         </PageHeader>
 
         <ProjectsGrid>
-          {labs.map((lab) => (
-            <ProjectCard
-              key={lab.name}
-              onClick={() => posthog.capture('lab_card_clicked', {
-                lab_name: lab.name.toLowerCase(),
-                status: lab.status,
-                href: lab.href
-              })}
-            >
-              <div>
-                <ProjectIcon>{lab.icon}</ProjectIcon>
-                <ProjectName blurred={lab.blurred}>{lab.name}</ProjectName>
-                <ProjectDescription blurred={lab.blurred}>{lab.description}</ProjectDescription>
-                <ProjectStatus status={lab.status}>
-                  {lab.status}
-                </ProjectStatus>
-              </div>
-            </ProjectCard>
+          {products.map((product) => (
+            product.href !== '#' ? (
+              <ProjectCardLink
+                key={product.name}
+                href={product.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => posthog.capture('product_card_clicked', {
+                  product_name: product.name.toLowerCase(),
+                  status: product.status,
+                  href: product.href
+                })}
+              >
+                <div>
+                  <ProjectIcon>{product.icon}</ProjectIcon>
+                  <ProjectName>{product.name}</ProjectName>
+                  <ProjectDescription>{product.description}</ProjectDescription>
+                  <ProjectStatus status={product.status}>
+                    {product.status}
+                  </ProjectStatus>
+                </div>
+              </ProjectCardLink>
+            ) : (
+              <ProjectCard
+                key={product.name}
+                onClick={() => posthog.capture('product_card_clicked', {
+                  product_name: product.name.toLowerCase(),
+                  status: product.status,
+                  href: product.href
+                })}
+              >
+                <div>
+                  <ProjectIcon>{product.icon}</ProjectIcon>
+                  <ProjectName blurred={product.blurred}>{product.name}</ProjectName>
+                  <ProjectDescription blurred={product.blurred}>{product.description}</ProjectDescription>
+                  <ProjectStatus status={product.status}>
+                    {product.status}
+                  </ProjectStatus>
+                </div>
+              </ProjectCard>
+            )
           ))}
         </ProjectsGrid>
       </Container>
