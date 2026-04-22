@@ -1,9 +1,17 @@
 import type { Metadata } from 'next'
+import { Instrument_Serif } from 'next/font/google'
 import StitchesProvider from '@/components/StitchesProvider'
 import StitchesRegistry from '@/components/StitchesRegistry'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 import { Providers } from './providers'
 import PostHogPageView from '@/components/PostHogPageView'
+
+const instrumentSerif = Instrument_Serif({
+  variable: '--font-instrument-serif',
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'WheyDev - Building Strong Products for Modern Makers',
@@ -16,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={instrumentSerif.variable}>
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="alternate icon" href="/favicon.ico" />
