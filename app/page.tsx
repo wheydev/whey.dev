@@ -25,7 +25,7 @@ const HeroTitle = styled('h1', {
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
   backgroundClip: 'text',
-  
+
   '@md': {
     fontSize: '$7xl',
     marginBottom: '$6',
@@ -51,7 +51,7 @@ const CTAButton = styled(Link, {
   color: '$background',
   borderRadius: '$md',
   fontSize: '$sm',
-  fontWeight: '$medium',
+  fontWeight: '$bold',
   transition: 'all 0.3s ease',
   position: 'relative',
   overflow: 'hidden',
