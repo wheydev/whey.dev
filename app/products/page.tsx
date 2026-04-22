@@ -2,9 +2,13 @@
 
 import { Layout } from '@/components/Layout'
 import { Container } from '@/components/Container'
-import { styled } from '@/stitches.config'
+import { PerspionMark } from '@/components/icons/PerspionMark'
+import { GradonMark } from '@/components/icons/GradonMark'
+import { PlaceholderMark } from '@/components/icons/PlaceholderMark'
+import { keyframes, styled } from '@/stitches.config'
 import Link from 'next/link'
 import posthog from 'posthog-js'
+import type { ComponentType, SVGProps } from 'react'
 
 const PageHeader = styled('div', {
   paddingTop: '$6',
@@ -81,38 +85,82 @@ const ProjectCardLink = styled(Link, {
   },
 })
 
-const ProjectIcon = styled('div', {
-  width: '48px',
-  height: '48px',
-  minWidth: '48px',
-  minHeight: '48px',
-  backgroundColor: '$gray2',
-  borderRadius: '$lg',
-  marginBottom: '$4',
+const ProjectBrand = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
-  fontSize: '24px',
-  lineHeight: 1,
-})
+  width: '100%',
+  minHeight: '56px',
+  marginBottom: '$5',
+  overflow: 'hidden',
 
-const ProjectName = styled('h3', {
-  fontSize: '$xl',
-  fontWeight: '$semibold',
-  marginBottom: '$2',
-
-  '@md': {
-    fontSize: '$2xl',
+  '& svg': {
+    height: '32px',
+    width: 'auto',
+    maxWidth: '100%',
   },
 
   variants: {
-    blurred: {
-      true: {
-        filter: 'blur(6px)',
-        userSelect: 'none',
-        pointerEvents: 'none',
-      },
+    tone: {
+      live: { color: '$green' },
+      muted: { color: '$textMuted' },
     },
+  },
+})
+
+const ping = keyframes({
+  '0%': { transform: 'scale(1)', opacity: 0.9 },
+  '75%, 100%': { transform: 'scale(2.6)', opacity: 0 },
+})
+
+const breathe = keyframes({
+  '0%, 100%': { opacity: 0.35 },
+  '50%': { opacity: 1 },
+})
+
+const LiveDot = styled('span', {
+  position: 'relative',
+  display: 'inline-block',
+  width: '8px',
+  height: '8px',
+  marginRight: '$2',
+
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    inset: 0,
+    borderRadius: '$full',
+    backgroundColor: '$green',
+    animation: `${ping} 1.8s cubic-bezier(0, 0, 0.2, 1) infinite`,
+  },
+
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    inset: '1px',
+    borderRadius: '$full',
+    backgroundColor: '$green',
+  },
+
+  '@media (prefers-reduced-motion: reduce)': {
+    '&::before': {
+      animation: 'none',
+      opacity: 0.35,
+    },
+  },
+})
+
+const DevDot = styled('span', {
+  display: 'inline-block',
+  width: '8px',
+  height: '8px',
+  marginRight: '$2',
+  borderRadius: '$full',
+  backgroundColor: '#F59E0B',
+  animation: `${breathe} 2.2s ease-in-out infinite`,
+
+  '@media (prefers-reduced-motion: reduce)': {
+    animation: 'none',
+    opacity: 0.8,
   },
 })
 
@@ -143,47 +191,68 @@ const ProjectDescription = styled('p', {
 })
 
 const ProjectStatus = styled('span', {
-  display: 'inline-block',
+  display: 'inline-flex',
+  alignItems: 'center',
   padding: '$1 $3',
-  backgroundColor: '$gray2',
   borderRadius: '$full',
   fontSize: '$xs',
   fontWeight: '$medium',
   textTransform: 'uppercase',
   letterSpacing: '$wide',
+  border: '1px solid transparent',
 
   variants: {
     status: {
       live: {
-        backgroundColor: '#10B981',
-        color: '$white',
+        backgroundColor: 'rgba(29, 216, 130, 0.1)',
+        borderColor: 'rgba(29, 216, 130, 0.28)',
+        color: '$green',
       },
       beta: {
-        backgroundColor: '#F59E0B',
-        color: '$white',
+        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+        borderColor: 'rgba(245, 158, 11, 0.3)',
+        color: '#F59E0B',
       },
       development: {
-        backgroundColor: '$gray5',
-        color: '$white',
+        backgroundColor: 'rgba(245, 158, 11, 0.08)',
+        borderColor: 'rgba(245, 158, 11, 0.24)',
+        color: '#F59E0B',
       },
     },
   },
 })
 
-const products = [
+type ProductIcon = ComponentType<SVGProps<SVGSVGElement>>
+
+const products: Array<{
+  name: string
+  description: string
+  status: 'live' | 'beta' | 'development'
+  icon: ProductIcon
+  href: string
+  blurred: boolean
+}> = [
+  {
+    name: 'Perspion',
+    description: 'Understand what your YouTube audience actually wants. Analyze comments with AI to surface content requests, recurring questions, and sentiment trends.',
+    status: 'live',
+    icon: PerspionMark,
+    href: 'https://perspion.whey.dev',
+    blurred: false,
+  },
   {
     name: 'Gradon',
     description: 'Track your career progress manually. Log PRs, courses, achievements, and generate AI summaries for performance reviews.',
-    status: 'development' as const,
-    icon: '📈',
+    status: 'live',
+    icon: GradonMark,
     href: 'https://gradon.whey.dev',
     blurred: false,
   },
   {
     name: 'Coming Soon',
     description: 'Nice try, inspector. You found the hidden text, but the secret stays sealed. No spoilers here. Come back later, curious one. Shipping faster than you think.',
-    status: 'development' as const,
-    icon: '🔒',
+    status: 'development',
+    icon: PlaceholderMark,
     href: '#',
     blurred: true,
   },
@@ -201,8 +270,11 @@ export default function ProductsPage() {
         </PageHeader>
 
         <ProjectsGrid>
-          {products.map((product) => (
-            product.href !== '#' ? (
+          {products.map((product) => {
+            const Brand = product.icon
+            const tone = product.blurred ? 'muted' : 'live'
+
+            return product.href !== '#' ? (
               <ProjectCardLink
                 key={product.name}
                 href={product.href}
@@ -215,11 +287,12 @@ export default function ProductsPage() {
                 })}
               >
                 <div>
-                  <ProjectIcon>{product.icon}</ProjectIcon>
-                  <ProjectName>{product.name}</ProjectName>
+                  <ProjectBrand tone={tone}>
+                    <Brand />
+                  </ProjectBrand>
                   <ProjectDescription>{product.description}</ProjectDescription>
                   <ProjectStatus status={product.status}>
-                    {product.status}
+                    {product.status === 'live' ? <><LiveDot />Live</> : 'Beta'}
                   </ProjectStatus>
                 </div>
               </ProjectCardLink>
@@ -233,16 +306,18 @@ export default function ProductsPage() {
                 })}
               >
                 <div>
-                  <ProjectIcon>{product.icon}</ProjectIcon>
-                  <ProjectName blurred={product.blurred}>{product.name}</ProjectName>
+                  <ProjectBrand tone={tone}>
+                    <Brand />
+                  </ProjectBrand>
                   <ProjectDescription blurred={product.blurred}>{product.description}</ProjectDescription>
                   <ProjectStatus status={product.status}>
-                    {product.status}
+                    <DevDot />
+                    Development
                   </ProjectStatus>
                 </div>
               </ProjectCard>
             )
-          ))}
+          })}
         </ProjectsGrid>
       </Container>
     </Layout>
