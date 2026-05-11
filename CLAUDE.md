@@ -64,7 +64,7 @@ WheyDev LLC is a US entity (Mercury Bank, EIN). Products are priced in USD for t
 
 Products live on the `/products` page. Current products:
 
-- **Gradon** — Career progress tracker (gradon.whey.dev). Separate repo, separate codebase.
+- **Perspion** — YouTube audience analysis (perspion.whey.dev). Separate repo, separate codebase.
 - More coming — displayed as blurred "Coming Soon" cards.
 
 ## Blog

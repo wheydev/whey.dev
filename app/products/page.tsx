@@ -3,7 +3,6 @@
 import { Layout } from '@/components/Layout'
 import { Container } from '@/components/Container'
 import { PerspionMark } from '@/components/icons/PerspionMark'
-import { GradonMark } from '@/components/icons/GradonMark'
 import { PlaceholderMark } from '@/components/icons/PlaceholderMark'
 import { keyframes, styled } from '@/stitches.config'
 import Link from 'next/link'
@@ -238,14 +237,6 @@ const products: Array<{
     status: 'live',
     icon: PerspionMark,
     href: 'https://perspion.whey.dev',
-    blurred: false,
-  },
-  {
-    name: 'Gradon',
-    description: 'Track your career progress manually. Log PRs, courses, achievements, and generate AI summaries for performance reviews.',
-    status: 'live',
-    icon: GradonMark,
-    href: 'https://gradon.whey.dev',
     blurred: false,
   },
   {
