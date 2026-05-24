@@ -1,0 +1,436 @@
+---
+import PageLayout from '../layouts/PageLayout.astro'
+import { getCollection } from 'astro:content'
+
+const changelogEntries = await getCollection('changelog')
+const recentChangelog = changelogEntries
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3)
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+
+---
+
+<PageLayout
+  title="WheyDev — Small tools, built strong"
+  description="WheyDev is a solo software studio shipping focused products for developers and creators."
+>
+  <section class="hero">
+    <div class="container">
+      <div class="hero__badge">
+        <span class="hero__dot" aria-hidden="true"></span>
+        Solo studio &middot; Wyoming, USA
+      </div>
+      <h1 class="hero__title">Small tools, built strong.</h1>
+      <p class="hero__subtitle">
+        WheyDev is the studio behind a handful of focused software products. Each one does a single thing well, shipped in public, and built by a single engineer who refuses shortcuts.
+      </p>
+      <div class="hero__actions">
+        <a href="/products" class="btn btn--primary">See products</a>
+        <a href="/changelog" class="btn btn--secondary">Read the changelog</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Products</h2>
+        <span class="section__meta">1 live &middot; more coming</span>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-card__header">
+            <div class="product-card__emblem" aria-hidden="true">P</div>
+            <span class="product-card__name">Perspion</span>
+            <span class="badge badge--mvp">MVP</span>
+            <a href="https://perspion.whey.dev" target="_blank" rel="noopener noreferrer" class="product-card__link">perspion.whey.dev &rarr;</a>
+          </div>
+          <p class="product-card__description">
+            YouTube comment intelligence for creators who want signal, not noise. Auto-tags sentiment, surfaces questions, and turns comments into content ideas.
+          </p>
+          <div class="product-card__meta">
+            <span class="meta-tag">Next.js</span>
+            <span class="meta-tag">TypeScript</span>
+            <span class="meta-tag">Gemini</span>
+            <span class="meta-divider">&middot;</span>
+            <span class="meta-text">Launched Apr 2026</span>
+            <span class="meta-divider">&middot;</span>
+            <span class="meta-text">Explorer free &middot; Pro $14 &middot; Agency $34</span>
+          </div>
+        </div>
+        <div class="product-card product-card--muted">
+          <p class="product-card__coming">Something else, soon &middot; Drafting in the open. Follow the changelog.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Changelog</h2>
+        <a href="/changelog" class="section__link">all entries &rarr;</a>
+      </div>
+      <div class="changelog-list">
+        {recentChangelog.map(entry => (
+          <div class="changelog-entry">
+            <time class="changelog-entry__date" datetime={entry.data.date.toISOString()}>
+              {formatDate(entry.data.date)}
+            </time>
+            <div class="changelog-entry__content">
+              <span class="changelog-entry__title">{entry.data.title}</span>
+              <span class="changelog-entry__desc">{entry.data.description}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Open source</h2>
+        <a href="https://github.com/wheydev" target="_blank" rel="noopener noreferrer" class="section__link">on GitHub &rarr;</a>
+      </div>
+      <p class="repos-note">Nothing public yet. Building in the open means shipping when it's worth sharing.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section__title" style="margin-bottom: 24px">The operator</h2>
+      <div class="operator">
+        <div class="operator__avatar" aria-hidden="true">EC</div>
+        <div class="operator__info">
+          <span class="operator__name">Eder Christian</span>
+          <p class="operator__bio">Frontend engineer heading toward Product Engineer, focused on performance and data-heavy interfaces. WheyDev is where he builds on his own time.</p>
+          <a href="https://ederchristian.com" target="_blank" rel="noopener noreferrer" class="operator__link">ederchristian.com &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .container {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 80px 0 64px;
+  }
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    background: var(--gray-1);
+    border: 0.5px solid var(--border-subtle);
+    border-radius: 999px;
+    padding: 5px 12px;
+    margin-bottom: 24px;
+  }
+  .hero__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+  .hero__title {
+    font-size: clamp(32px, 6vw, 48px);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    max-width: 520px;
+    margin: 0 0 16px;
+  }
+  .hero__subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 540px;
+    margin: 0 0 32px;
+    line-height: 1.6;
+  }
+  .hero__actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+    border: 0.5px solid transparent;
+    white-space: nowrap;
+  }
+  .btn--primary {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+  .btn--primary:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+    color: #000;
+  }
+  .btn--secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-emphasis);
+  }
+  .btn--secondary:hover {
+    border-color: var(--gray-5);
+    color: var(--text-primary);
+  }
+
+  /* Sections */
+  .section {
+    padding: 48px 0;
+    border-top: 0.5px solid var(--border-subtle);
+  }
+  .section__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .section__title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 0;
+  }
+  .section__meta {
+    font-size: 12px;
+    color: var(--text-tertiary);
+  }
+  .section__link {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    transition: color 150ms ease;
+  }
+  .section__link:hover { color: var(--accent); }
+
+  /* Products grid */
+  .products-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .product-card {
+    background: var(--gray-1);
+    padding: 20px;
+    transition: transform 150ms ease;
+  }
+  .product-card:hover { transform: translateY(-1px); }
+  .product-card--muted {
+    opacity: 0.5;
+  }
+  .product-card__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .product-card__emblem {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    background: var(--purple);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .product-card__name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .product-card__link {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--text-tertiary);
+    transition: color 150ms ease;
+  }
+  .product-card__link:hover { color: var(--accent); }
+  .product-card__description {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0 0 16px;
+  }
+  .product-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .product-card__coming {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0;
+    padding: 8px 0;
+  }
+
+  /* Badges */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    height: 20px;
+    padding: 0 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 400;
+  }
+  .badge--mvp {
+    background: rgba(29, 216, 130, 0.12);
+    border: 0.5px solid rgba(29, 216, 130, 0.4);
+    color: var(--accent);
+  }
+
+  /* Meta tags */
+  .meta-tag {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    background: var(--gray-2);
+    border: 0.5px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-family: var(--font-mono);
+  }
+  .meta-divider {
+    color: var(--border-emphasis);
+    font-size: 11px;
+  }
+  .meta-text {
+    font-size: 11px;
+    color: var(--text-tertiary);
+  }
+
+  /* Changelog list */
+  .changelog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .changelog-entry {
+    display: flex;
+    gap: 24px;
+    padding: 14px 0;
+    border-bottom: 0.5px solid var(--border-subtle);
+    align-items: flex-start;
+  }
+  .changelog-entry:last-child { border-bottom: none; }
+  .changelog-entry__date {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+    width: 100px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .changelog-entry__content {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .changelog-entry__title {
+    font-size: 13px;
+    color: var(--text-primary);
+    font-weight: 400;
+  }
+  .changelog-entry__desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* Repos note */
+  .repos-note {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Operator */
+  .operator {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .operator__avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--purple);
+    color: var(--gray-9);
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .operator__info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .operator__name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .operator__bio {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+    max-width: 480px;
+  }
+  .operator__link {
+    font-size: 12px;
+    color: var(--accent);
+    transition: color 150ms ease;
+    margin-top: 2px;
+    display: inline-block;
+  }
+  .operator__link:hover { color: var(--accent-hover); }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .hero { padding: 48px 0 40px; }
+.changelog-entry { flex-direction: column; gap: 4px; }
+    .changelog-entry__date { width: auto; }
+  }
+</style>

@@ -1,0 +1,71 @@
+---
+import PageLayout from '../layouts/PageLayout.astro'
+---
+
+<PageLayout
+  title="About"
+  description="WheyDev is a one-person software studio. Small tools, built strong."
+>
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title">About WheyDev</h1>
+    </div>
+    <div class="prose">
+      <p>WheyDev is a one-person software studio. The products it ships are small, focused, and built with the discipline of production work. Nothing experimental, nothing half-finished.</p>
+      <p>The name is deliberate. Whey protein is what you take to get stronger at the gym. WheyDev is what you build to get stronger as a software developer. The goal is not to move fast and break things. The goal is to build things that hold.</p>
+      <h2>Why small</h2>
+      <p>Small products can do one thing extremely well. They don't accumulate features. They don't need committees. They can be understood, improved, and shipped by one person who cares about the outcome.</p>
+      <p>There's a version of this industry that believes only funded companies with large teams can build real software. This studio exists to prove otherwise.</p>
+      <h2>Why solo</h2>
+      <p>Every product here was built by a single engineer with a full-time job, no external capital, and limited hours. That's not a liability. It's a constraint that forces clarity.</p>
+      <p>When you have to choose between features, you learn what actually matters. When you have to support the thing yourself, you build it to last.</p>
+      <h2>Built in public</h2>
+      <p>The changelog is the studio's record. Every product update, every studio milestone. If something ships, it's in the changelog. If something fails, that's in there too.</p>
+      <p>Building in public is not about performance. It's about accountability to the process.</p>
+      <h2>The operator</h2>
+      <p>WheyDev LLC is operated by <a href="https://ederchristian.com" target="_blank" rel="noopener noreferrer">Eder Christian</a>, a frontend engineer based in Brazil heading toward Product Engineer, with a focus on performance and data-heavy interfaces. WheyDev is where he builds on his own time.</p>
+    </div>
+  </div>
+</PageLayout>
+
+<style>
+  .container {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .page-header {
+    padding: 64px 0 48px;
+    border-bottom: 0.5px solid var(--border-subtle);
+    margin-bottom: 48px;
+  }
+  .page-title {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .prose {
+    padding-bottom: 80px;
+  }
+  .prose p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0 0 20px;
+  }
+  .prose h2 {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 40px 0 12px;
+    padding-top: 40px;
+    border-top: 0.5px solid var(--border-subtle);
+  }
+  .prose a {
+    color: var(--accent);
+    transition: color 150ms ease;
+  }
+  .prose a:hover { color: var(--accent-hover); }
+</style>
