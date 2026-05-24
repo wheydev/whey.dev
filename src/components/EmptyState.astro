@@ -1,0 +1,61 @@
+---
+interface Props {
+  title: string
+  description: string
+  hint?: string
+}
+
+const { title, description, hint } = Astro.props
+---
+
+<div class="empty-state">
+  <div class="empty-state__icon" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25">
+      <rect x="3" y="3" width="7" height="7" rx="1" />
+      <rect x="14" y="3" width="7" height="7" rx="1" />
+      <rect x="3" y="14" width="7" height="7" rx="1" />
+      <rect x="14" y="14" width="7" height="7" rx="1" />
+    </svg>
+  </div>
+  <p class="empty-state__title">{title}</p>
+  <p class="empty-state__desc">{description}</p>
+  {hint ? <p class="empty-state__hint">{hint}</p> : null}
+</div>
+
+<style>
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 64px 24px;
+    border: 0.5px solid var(--border-subtle);
+    border-radius: 8px;
+    background: var(--gray-1);
+    gap: 8px;
+  }
+  .empty-state__icon {
+    color: var(--gray-5);
+    margin-bottom: 8px;
+  }
+  .empty-state__title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+  .empty-state__desc {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    margin: 0;
+    max-width: 320px;
+    line-height: 1.5;
+  }
+  .empty-state__hint {
+    font-size: 12px;
+    color: var(--gray-5);
+    margin: 4px 0 0;
+    font-family: var(--font-mono);
+  }
+</style>

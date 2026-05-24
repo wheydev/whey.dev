@@ -1,0 +1,190 @@
+---
+import { SITE } from '../consts'
+
+const path = Astro.url.pathname
+
+const navItems = [
+  { href: '/products', label: 'Products', match: '/products' },
+  { href: '/open-source', label: 'Open source', match: '/open-source' },
+  { href: '/changelog', label: 'Changelog', match: '/changelog' },
+  { href: '/about', label: 'About', match: '/about' },
+]
+
+const isActive = (match: string) =>
+  match === '/' ? path === '/' : path === match || path.startsWith(`${match}/`)
+---
+
+<header class="header" data-scrolled="false">
+  <div class="header__inner">
+    <a href="/" class="header__logo" aria-label="WheyDev home">
+      <img src="/logo.svg" alt="WheyDev" width="126" height="auto" />
+    </a>
+    <nav class="header__nav" aria-label="Primary">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={['header__link', { 'is-active': isActive(item.match) }]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+    <button class="header__menu" aria-label="Open menu" data-menu-trigger>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <line x1="4" y1="8" x2="20" y2="8" />
+        <line x1="4" y1="16" x2="20" y2="16" />
+      </svg>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" data-mobile-menu hidden>
+  <button class="mobile-menu__close" aria-label="Close menu" data-menu-close>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <line x1="6" y1="6" x2="18" y2="18" />
+      <line x1="18" y1="6" x2="6" y2="18" />
+    </svg>
+  </button>
+  <nav class="mobile-menu__nav" aria-label="Mobile navigation">
+    {navItems.map((item) => (
+      <a
+        href={item.href}
+        class:list={['mobile-menu__link', { 'is-active': isActive(item.match) }]}
+      >
+        {item.label}
+      </a>
+    ))}
+  </nav>
+</div>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+    background: transparent;
+    transition: background 200ms ease, border-color 200ms ease;
+    border-bottom: 0.5px solid transparent;
+  }
+  .header[data-scrolled="true"] {
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom-color: var(--border-subtle);
+  }
+  .header__inner {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .header__logo {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .header__logo img {
+    width: 126px;
+    height: auto;
+  }
+  .header__nav {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+  }
+  .header__link {
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 400;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: color 150ms ease;
+  }
+  .header__link:hover {
+    color: var(--text-primary);
+  }
+  .header__link.is-active {
+    color: var(--text-primary);
+  }
+  .header__menu {
+    display: none;
+    background: transparent;
+    border: 0.5px solid var(--border-subtle);
+    color: var(--text-secondary);
+    border-radius: 4px;
+    padding: 6px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (max-width: 640px) {
+    .header__nav { display: none; }
+    .header__menu { display: inline-flex; }
+  }
+
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    background: var(--bg);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  .mobile-menu[hidden] { display: none; }
+  .mobile-menu__close {
+    align-self: flex-end;
+    background: transparent;
+    border: 0.5px solid var(--border-subtle);
+    color: var(--text-secondary);
+    border-radius: 4px;
+    padding: 6px;
+    cursor: pointer;
+    display: inline-flex;
+  }
+  .mobile-menu__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 48px;
+  }
+  .mobile-menu__link {
+    color: var(--text-primary);
+    font-size: 24px;
+    font-weight: 400;
+    padding: 16px 0;
+    border-bottom: 0.5px solid var(--border-subtle);
+    display: block;
+  }
+  .mobile-menu__link.is-active { color: var(--accent); }
+</style>
+
+<script>
+  function bindHeader() {
+    const header = document.querySelector<HTMLElement>('.header')
+    if (!header) return
+    const onScroll = () => { header.dataset.scrolled = window.scrollY > 8 ? 'true' : 'false' }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+  }
+  function bindMobileMenu() {
+    const trigger = document.querySelector<HTMLButtonElement>('[data-menu-trigger]')
+    const close = document.querySelector<HTMLButtonElement>('[data-menu-close]')
+    const menu = document.querySelector<HTMLDivElement>('[data-mobile-menu]')
+    if (!trigger || !close || !menu) return
+    const open = () => { menu.hidden = false; document.body.style.overflow = 'hidden' }
+    const shut = () => { menu.hidden = true; document.body.style.overflow = '' }
+    trigger.addEventListener('click', open)
+    close.addEventListener('click', shut)
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', shut))
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') shut() })
+  }
+  bindHeader()
+  bindMobileMenu()
+  document.addEventListener('astro:after-swap', () => { bindHeader(); bindMobileMenu() })
+</script>

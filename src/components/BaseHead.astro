@@ -1,0 +1,46 @@
+---
+import { ViewTransitions } from 'astro:transitions'
+import PostHogAnalytics from './PostHogAnalytics.astro'
+import '../styles/globals.css'
+import { SITE } from '../consts'
+
+interface Props {
+  title?: string
+  description?: string
+  image?: string
+  noIndex?: boolean
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+const {
+  title = SITE.name,
+  description = SITE.description,
+  image = SITE.ogImage,
+  noIndex = false,
+} = Astro.props
+const fullTitle = title === SITE.name ? SITE.name : `${title} | ${SITE.name}`
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="generator" content={Astro.generator} />
+<meta name="color-scheme" content="dark" />
+{noIndex ? <meta name="robots" content="noindex" /> : null}
+<link rel="canonical" href={canonicalURL} />
+<title>{fullTitle}</title>
+<meta name="title" content={fullTitle} />
+<meta name="description" content={description} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={fullTitle} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<link rel="alternate" type="application/rss+xml" title="WheyDev Changelog" href="/rss.xml" />
+<PostHogAnalytics />
+<ViewTransitions />

@@ -1,0 +1,61 @@
+---
+import PageLayout from '../layouts/PageLayout.astro'
+import EmptyState from '../components/EmptyState.astro'
+---
+
+<PageLayout
+  title="Open source"
+  description="Open source repos from WheyDev. Tools, configs, and templates built in public."
+>
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title">Open source</h1>
+      <p class="page-subtitle">Tools, configs, and experiments that live in public.</p>
+      <a href="https://github.com/wheydev" target="_blank" rel="noopener noreferrer" class="github-link">
+        github.com/wheydev &rarr;
+      </a>
+    </div>
+
+    <EmptyState
+      title="Nothing here yet"
+      description="Repos are being prepared. They'll show up here when they're worth sharing."
+      hint="follow /changelog for updates"
+    />
+  </div>
+</PageLayout>
+
+<style>
+  .container {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .page-header {
+    padding: 64px 0 48px;
+    border-bottom: 0.5px solid var(--border-subtle);
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .page-title {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .page-subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+  .github-link {
+    font-size: 13px;
+    color: var(--accent);
+    margin-top: 4px;
+    transition: color 150ms ease;
+    width: fit-content;
+  }
+  .github-link:hover { color: var(--accent-hover); }
+</style>
