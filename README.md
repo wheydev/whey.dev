@@ -1,37 +1,44 @@
 # WheyDev
 
-Modern Next.js template for multi-project development with TypeScript, Stitches, and MDX.
+whey.dev — one-person software studio. Building strong products for modern makers.
+
+## Stack
+
+- **Astro 5** with static + server rendering
+- **Panda CSS** for type-safe, zero-runtime styling
+- **TypeScript** strict mode
+- **React 18** for interactive islands
+- **PostHog** for analytics
+- **Yarn Berry** (v4)
 
 ## Quick Start
 
 ```bash
-npm install
+yarn install
 cp .env.example .env.local
-npm run dev
+yarn dev
 ```
-
-## Stack
-
-- **Next.js 15** with App Router
-- **TypeScript** for type safety
-- **Stitches** for CSS-in-JS
-- **MDX** for content
 
 ## Scripts
 
 ```bash
-npm run dev      # Development server
-npm run build    # Production build
-npm run start    # Production server
-npm run lint     # ESLint
+yarn dev       # Codegen + dev server
+yarn build     # Codegen + production build
+yarn preview   # Preview production build
+yarn check     # Codegen + type check
+```
+
+## Environment Variables
+
+```bash
+PUBLIC_POSTHOG_KEY=        # PostHog project key
+PUBLIC_POSTHOG_HOST=       # PostHog host (default: https://us.i.posthog.com)
+PUBLIC_POSTHOG_ENABLED=    # Enable analytics (true/false)
 ```
 
 ## Deployment
 
-Deploy to Vercel with one command:
-```bash
-vercel
-```
+Deployed on Vercel. Framework preset: `astro`.
 
 ---
 
