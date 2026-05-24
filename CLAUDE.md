@@ -6,7 +6,7 @@ WheyDev is a one-person software studio that builds focused products for develop
 
 The name comes from whey protein: it gives you strength at the gym, WheyDev gives you strength as a builder. The word "strong" is intentional throughout the brand.
 
-WheyDev LLC is a US entity (Mercury Bank, EIN). Products are priced in USD for the American market.
+WheyDev LLC is a US entity. Products are priced in USD for the American market.
 
 ## Core philosophy
 
@@ -17,47 +17,47 @@ WheyDev LLC is a US entity (Mercury Bank, EIN). Products are priced in USD for t
 
 ## Tech stack
 
-- Next.js 16 (App Router), React 18, TypeScript (strict mode)
-- Stitches v1 (CSS-in-JS with design tokens) — NOT Tailwind
-- next-mdx-remote v6 + gray-matter (blog content in MDX)
-- PostHog (client + server-side analytics with custom event tracking)
-- next-auth (configured but minimal usage currently)
-- framer-motion (animations)
-- date-fns (date formatting)
+- Astro 5, React 18, TypeScript (strict mode)
+- Panda CSS (type-safe, zero-runtime styling with design tokens)
+- PostHog (client-side analytics with manual event tracking)
+- Yarn Berry (v4)
 - Deployed on Vercel
 
 ## Project structure
 
-- `app/` — Next.js App Router pages
-  - `page.tsx` — Homepage (hero, values, CTAs)
-  - `products/page.tsx` — Products showcase
-  - `blog/` — Blog listing + `[slug]/` individual posts
-  - `about/page.tsx` — About page
-  - `layout.tsx` — Root layout with metadata
-  - `providers.tsx` — Client-side providers (PostHog)
-  - `not-found.tsx` — 404 page
-- `components/` — Shared components (Header, Footer, Layout, Container)
-- `content/blog/` — Markdown/MDX blog posts with YAML frontmatter
-- `src/config.ts` — Site metadata and pagination settings
-- `src/types.ts` — TypeScript interfaces (Site, SocialObject)
-- `lib/mdx.ts` — MDX processing utilities
-- `public/` — Static assets (logo, images, robots.txt)
-- `stitches.config.ts` — Design system (tokens, themes, utilities, breakpoints)
+- `src/pages/` — Astro pages
+  - `index.astro` — Homepage
+  - `products.astro` — Products showcase
+  - `changelog.astro` — Public changelog
+  - `open-source.astro` — Open source page
+  - `about.astro` — About page
+  - `rss.xml.ts` — RSS feed
+- `src/components/` — Shared Astro components (Header, Footer, BaseHead, etc.)
+- `src/layouts/PageLayout.astro` — Base page layout
+- `src/content/changelog/` — MDX changelog entries
+- `src/content/config.ts` — Content collection schemas
+- `src/consts.ts` — Site-wide constants (SITE object)
+- `src/styles/globals.css` — Global CSS
+- `panda.config.ts` — Design system (tokens, themes, utilities)
+- `styled-system/` — Panda CSS generated output (do not edit manually)
+- `public/` — Static assets (fonts, images, robots.txt)
 
-## Styling (Stitches)
+## Styling (Panda CSS)
 
-- Dark mode by default (background #0A0A0A)
-- Accent color: green #1DD882
-- Semantic tokens: `$textPrimary`, `$textSecondary`, `$textMuted`, `$border`, `$green`
-- Breakpoints: sm (640px), md (768px), lg (1024px), xl (1280px), 2xl (1536px)
-- Use `styled()` from `@/stitches.config` for all component styling
-- Use Stitches `variants` for conditional styles, not inline ternaries
-- Global styles are defined in `stitches.config.ts` via `globalCss()`
+- Dark mode by default (background `#0A0A0A`)
+- Accent color: green `#1DD882`
+- Semantic tokens: `text.primary`, `text.secondary`, `text.tertiary`, `accent`, `bg`
+- Use `css()` from `styled-system/css` for utility styles
+- Use `cva()` for component variants
+- All design tokens are defined in `panda.config.ts`
+- `styled-system/` is auto-generated — run `yarn dev` or `panda codegen` to regenerate
 
 ## Navigation
 
+- Home (`/`)
 - Products (`/products`)
-- Blog (`/blog`)
+- Changelog (`/changelog`)
+- Open Source (`/open-source`)
 - About (`/about`)
 
 ## Products
@@ -67,29 +67,23 @@ Products live on the `/products` page. Current products:
 - **Perspion** — YouTube audience analysis (perspion.whey.dev). Separate repo, separate codebase.
 - More coming — displayed as blurred "Coming Soon" cards.
 
-## Blog
+## Content (Changelog)
 
-- Posts are `.md` files in `/content/blog/` with YAML frontmatter
-- Pagination: 4 posts on homepage index, 3 per page on blog listing
-- Rendered with `next-mdx-remote`
+- Entries are `.mdx` files in `src/content/changelog/`
+- Filename format: `YYYY-MM-DD-slug.mdx`
+- Schema defined in `src/content/config.ts`
 
 ## Environment variables
 
-Required:
-- `NEXT_PUBLIC_PROJECT_NAME` — Project identifier (default: "wheydev")
-- `NEXT_PUBLIC_PROJECT_LOGO` — Logo path
-- `NEXT_PUBLIC_POSTHOG_KEY` — PostHog analytics key
-- `NEXT_PUBLIC_POSTHOG_HOST` — PostHog endpoint
-
-Optional:
-- `NEXTAUTH_URL`, `NEXTAUTH_SECRET` — Auth config
-- `DATABASE_URL` — Database connection
+- `PUBLIC_POSTHOG_KEY` — PostHog project key
+- `PUBLIC_POSTHOG_HOST` — PostHog host (default: `https://us.i.posthog.com`)
+- `PUBLIC_POSTHOG_ENABLED` — Enable analytics (`true`/`false`)
 
 ## Analytics (PostHog)
 
-- Custom event tracking on CTAs, nav clicks, footer links, product cards
-- PostHog rewrites configured in `next.config.js` to bypass ad blockers
-- Page views are NOT auto-tracked; only manual events and exception capture
+- Tracking via `PostHogAnalytics.astro` component
+- Manual `posthog.capture()` calls with descriptive event names and properties
+- Page views are NOT auto-tracked
 
 ## Commit message format
 
@@ -100,8 +94,8 @@ Optional:
 - No ticket/issue keys
 
 Examples:
-- `Replace Labs page with Products page`
-- `Update site metadata to reflect Products branding`
+- `Add Changelog page`
+- `Update site metadata`
 - `Add PostHog click tracking to footer links`
 
 ## Brand language
@@ -114,7 +108,6 @@ Examples:
 
 ## Coding conventions
 
-- Server components by default; `'use client'` only when necessary
-- Components use composition with Stitches styled primitives
-- PostHog tracking uses `posthog.capture()` with descriptive event names and properties
-- Mobile-responsive design built into every component via Stitches media queries
+- Astro components by default; React only for interactive islands (`client:*`)
+- PostHog tracking uses `posthog.capture()` with descriptive event names
+- Mobile-responsive design via Panda CSS responsive tokens/conditions
