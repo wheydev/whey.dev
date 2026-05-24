@@ -1,35 +1,38 @@
 {
   "name": "wheydev",
-  "version": "0.1.0",
+  "type": "module",
+  "version": "2.0.0",
   "private": true,
   "engines": {
     "node": ">=22.0.0"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "prepare": "panda codegen",
+    "dev": "panda codegen && astro dev",
+    "build": "panda codegen && astro build",
+    "preview": "astro preview",
+    "check": "panda codegen && astro check",
+    "astro": "astro"
   },
   "dependencies": {
-    "@stitches/react": "^1.2.8",
-    "date-fns": "^3.6.0",
-    "framer-motion": "^11.11.0",
-    "gray-matter": "^4.0.3",
-    "next": "^16.1.7",
-    "next-auth": "^4.24.10",
-    "next-mdx-remote": "6.0.0",
+    "@astrojs/mdx": "^4.0.0",
+    "@astrojs/react": "^4.0.0",
+    "@astrojs/rss": "^4.0.5",
+    "@astrojs/sitemap": "^3.1.4",
+    "@astrojs/vercel": "^8.0.0",
+    "@pandacss/dev": "^1.11.1",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "astro": "^5.0.0",
     "posthog-js": "^1.266.3",
-    "posthog-node": "^5.8.6",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "typescript": "^5.5.4"
   },
   "devDependencies": {
-    "@types/node": "^22.5.5",
-    "@types/react": "^18.3.6",
-    "@types/react-dom": "^18.3.0",
-    "eslint": "^8.57.0",
-    "eslint-config-next": "^16.1.7",
-    "typescript": "^5.5.4"
-  }
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/ts-plugin": "^1.0.0",
+    "@types/react": "^18",
+    "@types/react-dom": "^18"
+  },
+  "packageManager": "yarn@4.2.2"
 }
