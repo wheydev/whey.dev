@@ -1,0 +1,151 @@
+---
+interface Props {
+  emblem: string
+  name: string
+  description: string
+  href?: string
+  hrefLabel?: string
+  badge?: { label: string; variant?: 'mvp' | 'sunset' }
+  tags?: string[]
+  metaItems?: string[]
+}
+
+const {
+  emblem,
+  name,
+  description,
+  href,
+  hrefLabel,
+  badge,
+  tags = [],
+  metaItems = [],
+} = Astro.props
+
+const isExternal = href?.startsWith('http')
+const hasMeta = tags.length > 0 || metaItems.length > 0
+---
+
+<div class="product-card">
+  <div class="product-card__header">
+    <div class="product-card__emblem" aria-hidden="true">{emblem}</div>
+    <span class="product-card__name">{name}</span>
+    {badge ? (
+      <span class:list={['badge', `badge--${badge.variant ?? 'mvp'}`]}>{badge.label}</span>
+    ) : null}
+    {href ? (
+      <a
+        href={href}
+        class="product-card__link"
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
+      >
+        {hrefLabel ?? href} &rarr;
+      </a>
+    ) : null}
+  </div>
+  <p class="product-card__description">{description}</p>
+  {hasMeta ? (
+    <div class="product-card__meta">
+      {tags.map((tag) => (
+        <span class="meta-tag">{tag}</span>
+      ))}
+      {metaItems.map((item, i) => (
+        <>
+          {i > 0 || tags.length > 0 ? <span class="meta-divider">&middot;</span> : null}
+          <span class="meta-text">{item}</span>
+        </>
+      ))}
+    </div>
+  ) : null}
+</div>
+
+<style>
+  .product-card {
+    background: var(--gray-1);
+    padding: 20px;
+    transition: transform 150ms ease;
+  }
+  .product-card:hover { transform: translateY(-1px); }
+  .product-card__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .product-card__emblem {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    background: var(--purple);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .product-card__name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .product-card__link {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--text-tertiary);
+    transition: color 150ms ease;
+  }
+  .product-card__link:hover { color: var(--accent); }
+  .product-card__description {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0 0 16px;
+  }
+  .product-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    height: 20px;
+    padding: 0 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 400;
+  }
+  .badge--mvp {
+    background: rgba(29, 216, 130, 0.12);
+    border: 0.5px solid rgba(29, 216, 130, 0.4);
+    color: var(--accent);
+  }
+  .badge--sunset {
+    background: var(--gray-2);
+    border: 0.5px solid var(--border-subtle);
+    color: var(--text-tertiary);
+  }
+
+  .meta-tag {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    background: var(--gray-2);
+    border: 0.5px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-family: var(--font-mono);
+  }
+  .meta-divider {
+    color: var(--border-emphasis);
+    font-size: 11px;
+  }
+  .meta-text {
+    font-size: 11px;
+    color: var(--text-tertiary);
+  }
+</style>
