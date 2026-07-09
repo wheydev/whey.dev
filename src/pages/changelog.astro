@@ -6,7 +6,7 @@ const entries = await getCollection('changelog')
 const sorted = entries.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 
 const formatDate = (date: Date) =>
-  date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+  date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
 ---
 
 <PageLayout
