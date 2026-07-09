@@ -11,4 +11,16 @@ const changelog = defineCollection({
   }),
 })
 
-export const collections = { changelog }
+const writing = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    description: z.string(),
+    tags: z.array(z.string()).optional().default([]),
+    product: z.string().optional(),
+    draft: z.boolean().optional().default(false),
+  }),
+})
+
+export const collections = { changelog, writing }
