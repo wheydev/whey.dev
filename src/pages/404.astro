@@ -1,0 +1,109 @@
+---
+import PageLayout from '../layouts/PageLayout.astro'
+---
+
+<PageLayout
+  title="404 — Page not found"
+  description="The page you're looking for doesn't exist."
+  noIndex
+>
+  <section class="not-found">
+    <div class="container">
+      <span class="not-found__code" aria-hidden="true">404</span>
+      <h1 class="not-found__title">Page not found.</h1>
+      <p class="not-found__subtitle">The page you're looking for doesn't exist.</p>
+      <div class="not-found__actions">
+        <a href="/" class="btn btn--primary">Back home</a>
+        <a href="/changelog" class="btn btn--secondary">Read the changelog</a>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .container {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .not-found {
+    padding: 96px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .not-found .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .not-found__code {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-tertiary);
+    letter-spacing: 0.02em;
+  }
+  .not-found__title {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    margin: 0;
+  }
+  .not-found__subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin: 0;
+    max-width: 420px;
+    line-height: 1.6;
+  }
+  .not-found__actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+    border: 0.5px solid transparent;
+    white-space: nowrap;
+  }
+  .btn--primary {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+  .btn--primary:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+    color: #000;
+  }
+  .btn--secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-emphasis);
+  }
+  .btn--secondary:hover {
+    border-color: var(--gray-5);
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 640px) {
+    .not-found { padding: 64px 0; }
+  }
+</style>
