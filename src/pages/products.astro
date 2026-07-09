@@ -15,49 +15,25 @@ import PageLayout from '../layouts/PageLayout.astro'
     <div class="products">
       <div class="product">
         <div class="product__header">
-          <div class="product__emblem" aria-hidden="true">P</div>
+          <div class="product__emblem product__emblem--muted" aria-hidden="true">P</div>
           <div class="product__meta">
             <div class="product__name-row">
               <h2 class="product__name">Perspion</h2>
-              <span class="badge badge--mvp">MVP</span>
+              <span class="badge badge--sunset">Sunset</span>
             </div>
-            <a href="https://perspion.whey.dev" target="_blank" rel="noopener noreferrer" class="product__url">perspion.whey.dev &rarr;</a>
+            <span class="product__url product__url--muted">perspion.whey.dev</span>
           </div>
         </div>
         <p class="product__description">
-          YouTube comment intelligence for creators who want signal, not noise. Auto-tags sentiment, surfaces questions, and turns comments into content ideas.
+          YouTube comment intelligence for creators who want signal, not noise. Shut down in July 2026 after a short run as an MVP — the lessons are written up in full.
         </p>
         <div class="product__tech">
           <span class="meta-tag">Next.js</span>
           <span class="meta-tag">TypeScript</span>
           <span class="meta-tag">Gemini</span>
-          <span class="product__launched">Launched Mar 2026</span>
+          <span class="product__launched">Mar 2026 &ndash; Jul 2026</span>
         </div>
-        <div class="product__pricing-label">Pricing</div>
-        <div class="product__pricing">
-          <div class="pricing-plan">
-            <div class="pricing-plan__top">
-              <span class="pricing-plan__name">Explorer</span>
-              <span class="pricing-plan__price">Free</span>
-            </div>
-            <span class="pricing-plan__desc">3 analyses/mo · 1 video</span>
-          </div>
-          <div class="pricing-plan pricing-plan--pro">
-            <div class="pricing-plan__top">
-              <span class="pricing-plan__name">Pro</span>
-              <span class="pricing-plan__price">$14<span class="pricing-plan__per">/mo</span></span>
-            </div>
-            <span class="pricing-plan__desc">50 analyses/mo · 3 videos · PDF export</span>
-          </div>
-          <div class="pricing-plan">
-            <div class="pricing-plan__top">
-              <span class="pricing-plan__name">Agency</span>
-              <span class="pricing-plan__price">$34<span class="pricing-plan__per">/mo</span></span>
-            </div>
-            <span class="pricing-plan__desc">150 analyses/mo · 4 videos · Priority support</span>
-          </div>
-        </div>
-        <a href="https://perspion.whey.dev" target="_blank" rel="noopener noreferrer" class="btn btn--primary">Open Perspion &rarr;</a>
+        <a href="/writing/perspion-post-mortem" class="btn btn--ghost">Read the post-mortem &rarr;</a>
       </div>
 
       <div class="product product--muted">
@@ -181,6 +157,19 @@ import PageLayout from '../layouts/PageLayout.astro'
     border: 0.5px solid rgba(29, 216, 130, 0.4);
     color: var(--accent);
   }
+  .badge--sunset {
+    background: var(--gray-2);
+    border: 0.5px solid var(--border-subtle);
+    color: var(--text-tertiary);
+  }
+  .product__emblem--muted {
+    background: var(--gray-3);
+    color: var(--text-tertiary);
+  }
+  .product__url--muted {
+    color: var(--text-tertiary);
+    text-decoration: line-through;
+  }
   .product__launched {
     font-size: 11px;
     color: var(--text-tertiary);
@@ -268,6 +257,15 @@ import PageLayout from '../layouts/PageLayout.astro'
     background: var(--accent-hover);
     border-color: var(--accent-hover);
     color: #000;
+  }
+  .btn--ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: var(--border-subtle);
+  }
+  .btn--ghost:hover {
+    color: var(--text-primary);
+    border-color: var(--text-tertiary);
   }
   @media (max-width: 640px) {
     .product__pricing { grid-template-columns: 1fr; }
