@@ -1,0 +1,65 @@
+---
+slug: perspion-post-mortem
+title: "Six users. Zero dollars. I'm shutting down Perspion."
+date: 2026-07-08
+description: "Four months building a product six people used — one of them me. The four things that killed Perspion, and the rules the studio now runs on."
+tags: [post-mortem]
+product: perspion
+draft: false
+---
+
+I spent four months building a product that six people used.
+
+One of them was me.
+
+Today I'm shutting it down. This post-mortem is the most useful thing Perspion ever produced.
+
+If you've ever shipped a side project, you know the movie.
+
+You pick a platform you genuinely love — for me, YouTube. You spot a real-sounding problem: creators drowning in comments, no idea what their audience actually thinks. You build the thing nights and weekends: TypeScript, React, Supabase, deployed on Vercel. AI analyzes the comments, finds the patterns, hands the creator insights.
+
+It demos beautifully. Your wife thinks it's clever. You ship it, post about it twice, and wait for the internet to notice.
+
+The internet does not notice.
+
+Here are Perspion's real numbers, March to July 2026:
+
+- **6 signups total.** Including me. So: five strangers.
+- **4 actually ran an analysis.** 2 created an account and never came back.
+- **0 paid.** Not one.
+- Last activity: four users in April, one in March, one in July. The July one was me, checking if it still worked.
+
+Six users is not a distribution problem you iterate on. It's a verdict. But the autopsy found four specific causes of death, and they're all reusable:
+
+## 1. I paid for my free users to reject me.
+
+Every free analysis burned AI tokens — my tokens. Three free runs per month meant every curious visitor cost me money and owed me nothing. A free tier should cost you approximately zero per user; mine had a negative unit economy *before the pricing page*.
+
+## 2. I was my database's babysitter.
+
+Supabase's free tier pauses your database after a week of inactivity. A product with six users is, by definition, inactive. So I had a recurring chore: log in and poke my own infrastructure so it wouldn't fall asleep. When keeping the product *technically alive* requires manual labor, the product is telling you something.
+
+## 3. My free hosting was a legal trap.
+
+Vercel's Hobby plan prohibits commercial use. If someone had actually paid me, my hosting would have violated the terms of service on day one. I had built a business on infrastructure that contractually forbade business. Nobody checks this until it matters — check it before it matters.
+
+## 4. I built for a platform I love, not a pain someone would pay to kill.
+
+I love YouTube. That's why I built this — and that's the trap. "I love this platform" is not "creators will pay monthly to analyze comments." I never validated pull; I shipped a solution and went looking for its problem. And then I barely marketed it, because deep down I was waiting for the product to sell itself. Products don't.
+
+The meta-lesson underneath all four: **every one of these was knowable before I wrote a line of code.** Unit economics, infra terms, time-to-value, distribution plan — none of this requires building. It requires honesty at the whiteboard.
+
+## Conclusion
+
+So Perspion is dead. The database can finally sleep.
+
+But the studio it leaves behind now runs on rules written in its blood:
+
+- **Zero marginal cost per free user.** Not because subsidy is always wrong, but because a solo studio with no funding cannot buy customers it has no evidence it will keep. If a free visitor costs me money before anyone has ever paid, the design is wrong.
+- **Wow in under 10 seconds** — no product that requires weeks of habit before it gets good.
+- **Every output is a shareable artifact.** Distribution designed in, not bolted on.
+- **Kill criteria written before launch.** Numbers decide, not attachment. Perspion lived four months too long because no number was ever allowed to judge it.
+
+Two products built under those rules are already live or on the calendar: a daily game about what things used to cost, and something for NFL fans that turns your suffering into a score — launching kickoff week.
+
+Six users taught me more than a thousand would have. Watch what I do with the tuition.
