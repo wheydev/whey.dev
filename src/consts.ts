@@ -4,6 +4,7 @@ export const SITE = {
   url: 'https://whey.dev',
   ogImage: '/wheydev-og.png',
   twitter: 'https://x.com/ederchristian',
+  youtube: 'https://youtube.com/@ederchristian',
   github: 'https://github.com/ederchristian',
   email: 'eder@whey.dev',
   operatorUrl: 'https://ederchristian.com',

@@ -1,5 +1,6 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro'
+import { SITE } from '../consts'
 ---
 
 <PageLayout
@@ -11,19 +12,25 @@ import PageLayout from '../layouts/PageLayout.astro'
       <h1 class="page-title">About WheyDev</h1>
     </div>
     <div class="prose">
-      <p>WheyDev is a one-person software studio. The products it ships are small, focused, and built with the discipline of production work. Nothing experimental, nothing half-finished.</p>
-      <p>The name is deliberate. Whey protein is what you take to get stronger at the gym. WheyDev is what you build to get stronger as a software developer. The goal is not to move fast and break things. The goal is to build things that hold.</p>
-      <h2>Why small</h2>
-      <p>Small products can do one thing extremely well. They don't accumulate features. They don't need committees. They can be understood, improved, and shipped by one person who cares about the outcome.</p>
-      <p>There's a version of this industry that believes only funded companies with large teams can build real software. This studio exists to prove otherwise.</p>
-      <h2>Why solo</h2>
-      <p>Every product here was built by a single engineer with a full-time job, no external capital, and limited hours. That's not a liability. It's a constraint that forces clarity.</p>
-      <p>When you have to choose between features, you learn what actually matters. When you have to support the thing yourself, you build it to last.</p>
+      <p>WheyDev is a one-person software studio shipping small consumer products for the US market. Tools, toys, games: things people open, love in ten seconds, and share. The catalog will keep growing; the standard won't change.</p>
+      <p>The name is deliberate. Whey protein is what you take to get stronger at the gym. WheyDev is what you build to get stronger as a builder. Every product here is a rep.</p>
+      <h2>How the studio works</h2>
+      <p>Every product ships with its success criteria written down before launch. The ones that earn their keep get built deeper. The ones that don't get an honest post-mortem and a headstone in the changelog. No zombie maintenance, no products kept alive out of attachment.</p>
+      <p>The operating rules are few and non-negotiable:</p>
+      <ul>
+        <li>A free user must cost the studio approximately nothing.</li>
+        <li>The first "wow" happens in under ten seconds.</li>
+        <li>Every output is something people want to share.</li>
+        <li>The numbers decide. The founder just reads them.</li>
+      </ul>
+      <p>These rules were not invented in the abstract. Each one was paid for by a product that failed without it. The tuition is documented.</p>
+      <h2>Why small, why solo</h2>
+      <p>Every product here is built by a single engineer with a full-time job, no external capital, and limited hours. That constraint is the method: when hours are scarce, you learn what actually matters. When you support the thing yourself, you build only what you can hold.</p>
+      <p>Small products can do one thing extremely well. They don't accumulate features and they don't need committees. One person who cares about the outcome can understand the whole thing, improve it, and ship it before dinner.</p>
       <h2>Built in public</h2>
-      <p>The changelog is the studio's record. Every product update, every studio milestone. If something ships, it's in the changelog. If something fails, that's in there too.</p>
-      <p>Building in public is not about performance. It's about accountability to the process.</p>
+      <p>The changelog is the studio's record: every launch, every milestone, every shutdown. If something ships, it's there. If something dies, the post-mortem is there too, with the real numbers. Building in public isn't a performance; it's what keeps the process honest.</p>
       <h2>The operator</h2>
-      <p>WheyDev LLC is operated by <a href="https://ederchristian.com" target="_blank" rel="noopener noreferrer">Eder Christian</a>, a frontend engineer based in Brazil heading toward Product Engineer, with a focus on performance and data-heavy interfaces. WheyDev is where he builds on his own time.</p>
+      <p>WheyDev LLC is operated by Eder Christian, a Brazilian software engineer obsessed with performance and data-heavy interfaces. By day he builds production frontend systems; on his own time he builds this. You can watch him do it: <a href={SITE.twitter} target="_blank" rel="noopener noreferrer">X/Twitter</a> · <a href={SITE.youtube} target="_blank" rel="noopener noreferrer">YouTube</a> · <a href={SITE.operatorUrl} target="_blank" rel="noopener noreferrer">personal site</a>.</p>
     </div>
   </div>
 </PageLayout>
@@ -62,6 +69,24 @@ import PageLayout from '../layouts/PageLayout.astro'
     margin: 40px 0 12px;
     padding-top: 40px;
     border-top: 0.5px solid var(--border-subtle);
+  }
+  .prose ul {
+    margin: 0 0 20px;
+    padding-left: 20px;
+    list-style: none;
+  }
+  .prose li {
+    position: relative;
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0 0 8px;
+  }
+  .prose li::before {
+    content: '—';
+    position: absolute;
+    left: -20px;
+    color: var(--text-tertiary);
   }
   .prose a {
     color: var(--accent);
