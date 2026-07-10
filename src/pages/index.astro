@@ -1,6 +1,6 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro'
-import EmptyState from '../components/EmptyState.astro'
+import ProductCard from '../components/ProductCard.astro'
 import { getCollection } from 'astro:content'
 
 const changelogEntries = await getCollection('changelog')
@@ -38,13 +38,19 @@ const formatDate = (date: Date) =>
     <div class="container">
       <div class="section__header">
         <h2 class="section__title">Products</h2>
-        <span class="section__meta">building the next one</span>
+        <a href="/products" class="section__link">all products &rarr;</a>
       </div>
-      <EmptyState
-        title="Something new is in the works"
-        description="The next product is being built in public. It ships the moment it's strong enough to stand on its own."
-        hint="coming soon"
-      />
+      <div class="products-grid">
+        <ProductCard
+          emblem="YP"
+          name="Yesterday's Price"
+          description="A daily guessing game about historical American prices. One puzzle a day, everyone plays the same one — six guesses, then share your result and come back tomorrow."
+          href="https://yesterdaysprice.com"
+          hrefLabel="yesterdaysprice.com"
+          badge={{ label: 'Live', variant: 'mvp' }}
+          tags={['Next.js', 'TypeScript', 'Panda CSS']}
+        />
+      </div>
     </div>
   </section>
 
@@ -210,6 +216,13 @@ const formatDate = (date: Date) =>
     transition: color 150ms ease;
   }
   .section__link:hover { color: var(--accent); }
+
+  /* Products */
+  .products-grid {
+    border: 0.5px solid var(--border-subtle);
+    border-radius: 8px;
+    overflow: hidden;
+  }
 
   /* Changelog list */
   .changelog-list {
