@@ -42,6 +42,24 @@ const formatDate = (date: Date) =>
       </div>
       <div class="products-grid">
         <ProductCard
+          emblem="AS"
+          name="All My Skies"
+          description="Type your hometown and birthdate and see every day of weather you've ever lived, rendered as a layered 3D sculpture. Built entirely in your browser — nothing personal ever leaves it."
+          href="https://allmyskies.com"
+          hrefLabel="allmyskies.com"
+          badge={{ label: 'Live', variant: 'mvp' }}
+          tags={['Next.js', 'TypeScript', 'Three.js']}
+        />
+        <ProductCard
+          emblem="FR"
+          name="FanRide"
+          description="How much has your team made you suffer? Ride your American football team's history like a mountain stage, meet your Misery Score, then share it and settle who's suffered more."
+          href="https://playfanride.com"
+          hrefLabel="playfanride.com"
+          badge={{ label: 'Live', variant: 'mvp' }}
+          tags={['Next.js', 'TypeScript', 'Three.js']}
+        />
+        <ProductCard
           emblem="YP"
           name="Yesterday's Price"
           description="A daily guessing game about historical American prices. One puzzle a day, everyone plays the same one — six guesses, then share your result and come back tomorrow."
@@ -219,6 +237,10 @@ const formatDate = (date: Date) =>
 
   /* Products */
   .products-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border-subtle);
     border: 0.5px solid var(--border-subtle);
     border-radius: 8px;
     overflow: hidden;
