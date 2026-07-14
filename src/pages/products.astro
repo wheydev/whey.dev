@@ -15,6 +15,52 @@ import PageLayout from '../layouts/PageLayout.astro'
     <div class="products">
       <div class="product">
         <div class="product__header">
+          <div class="product__emblem" aria-hidden="true">AS</div>
+          <div class="product__meta">
+            <div class="product__name-row">
+              <h2 class="product__name">All My Skies</h2>
+              <span class="badge badge--mvp">Live</span>
+            </div>
+            <a href="https://allmyskies.com" target="_blank" rel="noopener noreferrer" class="product__url">allmyskies.com</a>
+          </div>
+        </div>
+        <p class="product__description">
+          Type your hometown and birthdate and see every day of weather you&rsquo;ve ever lived, rendered as a layered 3D sculpture &mdash; time as strata, temperature as color and elevation. Built entirely in your browser from public NOAA records; nothing personal ever leaves it.
+        </p>
+        <div class="product__tech">
+          <span class="meta-tag">Next.js</span>
+          <span class="meta-tag">TypeScript</span>
+          <span class="meta-tag">Three.js</span>
+          <span class="product__launched">Jul 2026</span>
+        </div>
+        <a href="https://allmyskies.com" target="_blank" rel="noopener noreferrer" class="btn btn--primary">Build your sky &rarr;</a>
+      </div>
+
+      <div class="product">
+        <div class="product__header">
+          <div class="product__emblem" aria-hidden="true">FR</div>
+          <div class="product__meta">
+            <div class="product__name-row">
+              <h2 class="product__name">FanRide</h2>
+              <span class="badge badge--mvp">Live</span>
+            </div>
+            <a href="https://playfanride.com" target="_blank" rel="noopener noreferrer" class="product__url">playfanride.com</a>
+          </div>
+        </div>
+        <p class="product__description">
+          How much has your team made you suffer? FanRide turns your American football team&rsquo;s history into a mountain stage you ride in 3D, then hands you a Misery Score &mdash; one number for the pain, on a scale that means the same thing for every fan base. Share it, duel a rival, settle the argument.
+        </p>
+        <div class="product__tech">
+          <span class="meta-tag">Next.js</span>
+          <span class="meta-tag">TypeScript</span>
+          <span class="meta-tag">Three.js</span>
+          <span class="product__launched">Jul 2026</span>
+        </div>
+        <a href="https://playfanride.com" target="_blank" rel="noopener noreferrer" class="btn btn--primary">Meet your Misery Score &rarr;</a>
+      </div>
+
+      <div class="product">
+        <div class="product__header">
           <div class="product__emblem" aria-hidden="true">YP</div>
           <div class="product__meta">
             <div class="product__name-row">
@@ -151,7 +197,6 @@ import PageLayout from '../layouts/PageLayout.astro'
     color: var(--text-secondary);
     line-height: 1.6;
     margin: 0;
-    max-width: 560px;
   }
   .product__tech {
     display: flex;
