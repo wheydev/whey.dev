@@ -64,8 +64,10 @@ WheyDev LLC is a US entity. Products are priced in USD for the American market.
 
 Products live on the `/products` page. Current products:
 
-- **Perspion** — YouTube audience analysis (perspion.whey.dev). Separate repo, separate codebase.
-- More coming — displayed as blurred "Coming Soon" cards.
+- **FanRide** — your team's Misery Score, ridden as a 3D mountain stage (playfanride.com). Separate repo, separate codebase.
+- **All My Skies** — your life's weather as a 3D sculpture (allmyskies.com). Separate repo, separate codebase.
+- **Yesterday's Price** — daily guessing game about historical American prices (yesterdaysprice.com). Separate repo, separate codebase.
+- **Perspion** — YouTube audience analysis. Sunset July 2026; post-mortem at `/writing/perspion-post-mortem`.
 
 ## Content (Changelog)
 
