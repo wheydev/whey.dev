@@ -66,7 +66,6 @@ Products live on the `/products` page. Current products:
 
 - **Wayfilm** — turn any route into a cinematic map film (wayfilm.app). Separate repo, separate codebase.
 - **RallyViz** — professional tennis matches rendered as 3D momentum waves (rallyviz.com). Separate repo, separate codebase.
-- **FanRide** — your team's Misery Score, ridden as a 3D mountain stage (playfanride.com). Separate repo, separate codebase.
 - **Yesterday's Price** — daily guessing game about historical American prices (yesterdaysprice.com). Separate repo, separate codebase.
 - **Perspion** — YouTube audience analysis. Sunset July 2026; post-mortem at `/writing/perspion-post-mortem`.
 
